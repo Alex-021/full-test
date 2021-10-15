@@ -61,8 +61,8 @@ if (!is_null($text) && !is_null($chat_id)) {
     elseif ($text == '📌 توضیحات') {
 
         $option = array(
-            array($telegram->buildKeyboardButton("💡 راهنما")),
-            array($telegram->buildKeyboardButton("اطلاعات"))
+            array($telegram->buildKeyboardButton("اطلاعات")),
+            array($telegram->buildKeyboardButton("💡 راهنما"))
         );
         $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
@@ -102,9 +102,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $keyb = $telegram->buildInlineKeyBoard($option);
 
         $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
-        
-
-
+        گزینه مناسب را انتخاب کنید:
         ', 'parse_mode' => "Markdown");
 
         $telegram->sendMessage($content);
