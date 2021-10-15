@@ -15,7 +15,7 @@ $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
 
 if(!is_null($text) && !is_null($chat_id)) {
-    // checkJoin();
+    checkJoin();
     if($text == 'اطلاعات') {
         $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
                             نام کاربری شما: $username
@@ -28,7 +28,9 @@ if(!is_null($text) && !is_null($chat_id)) {
     }
 }
 
-// function checkJoin() {
+function checkJoin() {
+    $content1 = array('chat_id'=>$chat_id, 'text'=> "Salammm");
+    $telegram->sendMessage($content);
 // $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
 // $join_info = $telegram->getChatMember($join_channel);
 // $join_check = $join_info['ok'];
@@ -54,4 +56,4 @@ if(!is_null($text) && !is_null($chat_id)) {
 
 //         $telegram->sendMessage($join_content);
 //     }
-// }
+}
