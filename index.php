@@ -14,6 +14,25 @@ $message_id = $telegram->MessageID(); // هر پیغام در تلگرام یک 
 $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
 
+$content = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
+$join_info = $telegram->getChatMember($content);
+
+$join_check = $join_info['ok'];
+$join_status = $join_info['result']['status']; // Value => member || left
+
+if(!$join_check || $join_status == 'left'){
+    $content = array('chat_id' => $chat_id, 'text' => 'کاربر عزیز شما عضو ربات نیستید و امکان استفاده از ربات را ندارید ⚠️
+ 
+    ⭕️ لطفا در کانال زیر عضو شوید :
+    
+    🆔 @Factweb
+    
+    سپس به ربات برگشته و مجدد امتحان کنید ✔️'
+    .PHP_EOL.'https://t.me/Rmn98');
+
+    $telegram->sendMessage($content);
+}
+else {
 if(!is_null($text) && !is_null($chat_id)){
     if($text == 'اطلاعات') {
         $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
@@ -26,3 +45,4 @@ if(!is_null($text) && !is_null($chat_id)){
         $telegram->sendMessage($content);
                 }
     }
+}
