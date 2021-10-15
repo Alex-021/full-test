@@ -40,7 +40,7 @@ $join_status = $join_info['result']['status']; // Value => member || left
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
                 ),
             array(
-                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $callback_data = '/start')
+                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
                 )
             );
             $keyb = $telegram->buildInlineKeyBoard($option);
