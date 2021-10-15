@@ -30,7 +30,7 @@ if(!is_null($text) && !is_null($chat_id)) {
 
 function checkJoin() {
     $content1 = array('chat_id'=>$chat_id, 'text'=> "Salammm");
-    $telegram->sendMessage($content);
+    $telegram->sendMessage($content1);
 // $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
 // $join_info = $telegram->getChatMember($join_channel);
 // $join_check = $join_info['ok'];
