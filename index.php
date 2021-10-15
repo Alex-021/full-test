@@ -21,14 +21,14 @@ $join_check = $join_info['ok'];
 $join_status = $join_info['result']['status']; // Value => member || left
 
 if(!$join_check || $join_status == 'left'){
-    $content = array('chat_id' => $chat_id, 'text' => 'کاربر عزیز شما عضو ربات نیستید و امکان استفاده از ربات را ندارید ⚠️
+    $content = array('chat_id' => $chat_id, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
  
     ⭕️ لطفا در کانال زیر عضو شوید :
     
-    🆔 @Factweb
+    🆔 https://t.me/joinchat/AAAAAFDVkqHYPALBeHwNVA
     
     سپس به ربات برگشته و مجدد امتحان کنید ✔️'
-    .PHP_EOL.'https://t.me/Rmn98');
+    .PHP_EOL.'عجب');
 
     $telegram->sendMessage($content);
 }
