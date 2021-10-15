@@ -44,9 +44,8 @@ if (!is_null($text) && !is_null($chat_id)) {
     }
     elseif ($text == '/start') {
 
-        $option = array( 
-            array($telegram->buildKeyboardButton("📌 توضیحات"),
-                  $telegram->buildKeyboardButton("💡 راهنما")), 
+        $option = array(
+            array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات"))
         );
         $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
@@ -61,18 +60,61 @@ if (!is_null($text) && !is_null($chat_id)) {
     }
     elseif ($text == '📌 توضیحات') {
 
-        $option = array( 
+        $option = array(
+            array($telegram->buildKeyboardButton("💡 راهنما")),
             array($telegram->buildKeyboardButton("اطلاعات"))
         );
-        $keyb = $telegram->buildKeyBoard($option, $onetime=false);
+        $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
         $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
         *خوش امدید*
         
-        ربات شماره مجازی:
-        ابتدا توضیحات و راهنما را مطالعه کنید.
+        اطلاعات رو بزن ببین چه باحالع :))
 
         ", 'parse_mode' => "Markdown");
+        $telegram->sendMessage($content);
+    }
+    elseif ($text == '💡 راهنما') {
+
+        $option = array(
+            array($telegram->buildKeyboardButton("📌 توضیحات")),
+            array($telegram->buildKeyboardButton("برگشت"))
+        );
+        $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+        $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+        *خوش امدید*
+        
+        الان حسش نیست راهنمایی کنم 🤦🏻‍♂️😅
+
+        ", 'parse_mode' => "Markdown");
+        $telegram->sendMessage($content);
+    }
+    elseif ($text == 'برگشت') {
+        $option = array(
+            array(
+                $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
+            ),
+            array(
+                $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
+                )
+            );
+            $keyb = $telegram->buildInlineKeyBoard($option);
+
+        $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
+        
+
+
+        ', 'parse_mode' => "Markdown");
+
+        $telegram->sendMessage($content);
+    }
+    elseif ($text == 'روسیه') {
+        $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
+        $telegram->sendMessage($content);
+    }
+    elseif ($text == 'فضایی') {
+        $content = array('chat_id' => $chat_id, 'text' => "ناموصا اومدی دارع؟ 😐");
         $telegram->sendMessage($content);
     }
     elseif ($text == 'اطلاعات') {
