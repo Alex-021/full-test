@@ -21,13 +21,6 @@ $join_check = $join_info['ok'];
 $join_status = $join_info['result']['status']; // Value => member || left
 
 if(!$join_check || $join_status == 'left') {
-    $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
- 
-    ⭕️ لطفا در کانال زیر عضو شوید :
-    
-    🆔 @Rmn98
-    
-    سپس به ربات برگشته و مجدد امتحان کنید ✔️');
 
     $option = array(
         array(
@@ -38,6 +31,14 @@ if(!$join_check || $join_status == 'left') {
             )
         );
         $keyb = $telegram->buildInlineKeyBoard($option);
+
+    $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
+ 
+    ⭕️ لطفا در کانال زیر عضو شوید :
+    
+    🆔 @Rmn98
+    
+    سپس به ربات برگشته و مجدد امتحان کنید ✔️');
 
     $telegram->sendMessage($join_content);
 }
