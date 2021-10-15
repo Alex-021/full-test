@@ -16,23 +16,13 @@ $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگ
 
 if(!is_null($text) && !is_null($chat_id)){
     if($text == 'اطلاعات') {
-        $content = array('chat_id' => $chat_id, 'text' => "'متن ارسال شما: '$text
-                            'نام کاربری شما: '$username
-                            'نام شما: '$name
-                            'فامیلی شما: '$family
-                            'آیدی پیام: '$message_id
-                            'آیدی شما: '$user_id
-                            'آیدی مکان چت (بات یا گروه): '$chat_id");
-        $telegram->sendMessage($content);
-                }
-    if($text == 'info') {
-        $content = array('chat_id' => $chat_id, 'text' => 'متن ارسال شما:'.$text.
-                            'نام کاربری شما: '.$username.
-                            'نام شما: '.$name.
-                            'فامیلی شما: '.$family.
-                            'آیدی پیام: '.$message_id.
-                            'آیدی شما: '.$user_id.
-                            'آیدی مکان چت (بات یا گروه): '.$chat_id);
+        $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
+                            نام کاربری شما: $username
+                            نام شما: $name
+                            فامیلی شما: $family
+                            آیدی پیام: $message_id
+                            آیدی شما: $user_id
+                            آیدی مکان چت (بات یا گروه): $chat_id");
         $telegram->sendMessage($content);
                 }
     }
