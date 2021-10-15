@@ -40,7 +40,7 @@ if(!$join_check || $join_status == 'left') {
     $telegram->sendMessage($join_content);
 }
 else {
-if(!is_null($text) && !is_null($chat_id)) {
+// if(!is_null($text) && !is_null($chat_id)) {
     if($text == 'اطلاعات') {
         $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
                             نام کاربری شما: $username
@@ -51,5 +51,5 @@ if(!is_null($text) && !is_null($chat_id)) {
                             آیدی مکان چت (بات یا گروه): $chat_id", 'parse_mode' => Markdown);
         $telegram->sendMessage($content);
                 }
-    }
+    // }
 }
