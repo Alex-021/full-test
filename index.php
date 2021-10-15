@@ -23,7 +23,7 @@ if(!is_null($text) && !is_null($chat_id)) {
                             فامیلی شما: $family
                             آیدی پیام: $message_id
                             آیدی شما: $user_id
-                            آیدی مکان چت (بات یا گروه): $chat_id", 'parse_mode' == Markdown);
+                            آیدی مکان چت (بات یا گروه): $chat_id", 'parse_mode' => "Markdown");
         $telegram->sendMessage($content);
     }
 }
