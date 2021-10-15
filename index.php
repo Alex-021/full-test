@@ -5,7 +5,7 @@ include 'Telegram.php';
 $bot_id = "2088394503:AAE-lF3-HYFf4FZH5GVlsJvg7j_6C3jiAoU";
 // Instances the class
 $telegram = new Telegram($bot_id);
-
+$admin = "271148667";
 $text = $telegram->Text(); // متنی که کاربر ارسال میکنه
 $username = $telegram->Username(); // نام کاربری کاربر
 $name = $telegram->FirstName();
@@ -14,6 +14,8 @@ $message_id = $telegram->MessageID(); // هر پیغام در تلگرام یک 
 $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
 // [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
+$from_chat = $telegram->FromChatID();
+
 if (!is_null($text) && !is_null($chat_id)) {
 
     $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
@@ -21,6 +23,9 @@ if (!is_null($text) && !is_null($chat_id)) {
     $join_check = $join_info['ok'];
     $join_status = $join_info['result']['status']; // Value => member || left
     
+    $forward_content = array('chat_id' => $admin, 'from_chat_id' => $from_chat, 'message_id' => $message_id);
+    $telegram->forwardMessage($forward_content);
+
     if (!$join_check || $join_status == 'left') {
         $option = array(
             array(
