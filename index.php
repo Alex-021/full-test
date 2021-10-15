@@ -104,15 +104,29 @@ if (!is_null($text) && !is_null($chat_id)) {
         $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
         گزینه مناسب را انتخاب کنید:
         ', 'parse_mode' => "Markdown");
-
         $telegram->sendMessage($content);
     }
     elseif ($text == 'روسیه') {
-        $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
+        $option = array(
+            array(
+                $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
+            ),
+            array(
+                $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
+                )
+            );
+            $keyb = $telegram->buildInlineKeyBoard($option);
+            $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
+            $telegram->sendMessage($content);
+            
+        $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
+        گزینه مناسب را انتخاب کنید:
+        ', 'parse_mode' => "Markdown");
         $telegram->sendMessage($content);
+
     }
     elseif ($text == 'فضایی') {
-        $content = array('chat_id' => $chat_id, 'text' => "ناموصا اومدی دارع؟ 😐");
+        $content = array('chat_id' => $chat_id, 'text' => "ناموصا اینو زدی ببینی شماره فضایی دارع؟ 😐");
         $telegram->sendMessage($content);
     }
     elseif ($text == 'اطلاعات') {
