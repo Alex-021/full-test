@@ -14,8 +14,8 @@ $message_id = $telegram->MessageID(); // هر پیغام در تلگرام یک 
 $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
 
-$content = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
-$join_info = $telegram->getChatMember($content);
+$join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
+$join_info = $telegram->getChatMember($join_channel);
 
 $join_check = $join_info['ok'];
 $join_status = $join_info['result']['status']; // Value => member || left
@@ -40,7 +40,7 @@ if(!$join_check || $join_status == 'left') {
     $telegram->sendMessage($join_content);
 }
 else {
-// if(!is_null($text) && !is_null($chat_id)) {
+if(!is_null($text) && !is_null($chat_id)) {
     if($text == 'اطلاعات') {
         $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
                             نام کاربری شما: $username
@@ -51,5 +51,5 @@ else {
                             آیدی مکان چت (بات یا گروه): $chat_id", 'parse_mode' => Markdown);
         $telegram->sendMessage($content);
                 }
-    // }
+    }
 }
