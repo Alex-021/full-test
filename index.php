@@ -27,7 +27,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
             ),
             array(
-                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $callback_data = "/start")
+                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $url="", $callback_data = "/start")
                 )
             );
             $keyb = $telegram->buildInlineKeyBoard($option);
