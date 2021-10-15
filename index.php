@@ -14,9 +14,34 @@ $message_id = $telegram->MessageID(); // هر پیغام در تلگرام یک 
 $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
 
-if(!is_null($text) && !is_null($chat_id)) {
-    checkJoin();
-    if($text == 'اطلاعات') {
+if (!is_null($text) && !is_null($chat_id)) {
+
+    $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
+    $join_info = $telegram->getChatMember($join_channel);
+    $join_check = $join_info['ok'];
+    $join_status = $join_info['result']['status']; // Value => member || left
+    
+    if (!$join_check || $join_status == 'left') {
+        $option = array(
+            array(
+                $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
+                )
+            );
+            $keyb = $telegram->buildInlineKeyBoard($option);
+
+        $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
+    
+        ⭕️ لطفا در کانال زیر عضو شوید :
+        
+        🆔 @Rmn98
+
+        [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
+        
+        سپس به ربات برگشته و مجدد امتحان کنید ✔️');
+
+        $telegram->sendMessage($join_content);
+    }
+    elseif ($text == 'اطلاعات') {
         $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
                             نام کاربری شما: $username
                             *نام شما:* $name
@@ -26,34 +51,4 @@ if(!is_null($text) && !is_null($chat_id)) {
                             آیدی مکان چت (بات یا گروه): $chat_id", 'parse_mode' => "Markdown");
         $telegram->sendMessage($content);
     }
-}
-
-function checkJoin() {
-    $content1 = array('chat_id'=>$chat_id, 'text'=> "Salammm");
-    $telegram->sendMessage($content1);
-// $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
-// $join_info = $telegram->getChatMember($join_channel);
-// $join_check = $join_info['ok'];
-// $join_status = $join_info['result']['status']; // Value => member || left
-
-//     if(!$join_check || $join_status == 'left') {
-//         $option = array(
-//             array(
-//                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
-//                 )
-//             );
-//             $keyb = $telegram->buildInlineKeyBoard($option);
-
-//         $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
-    
-//         ⭕️ لطفا در کانال زیر عضو شوید :
-        
-//         🆔 @Rmn98
-
-//         [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
-        
-//         سپس به ربات برگشته و مجدد امتحان کنید ✔️');
-
-//         $telegram->sendMessage($join_content);
-//     }
 }
