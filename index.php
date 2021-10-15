@@ -25,6 +25,9 @@ if (!is_null($text) && !is_null($chat_id)) {
         $option = array(
             array(
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
+            ),
+            array(
+                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $callback_data = "/start")
                 )
             );
             $keyb = $telegram->buildInlineKeyBoard($option);
@@ -37,7 +40,7 @@ if (!is_null($text) && !is_null($chat_id)) {
 
         [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
         
-        سپس به ربات برگشته و مجدد امتحان کنید ✔️');
+        سپس به ربات برگشته و مجدد امتحان کنید ✔️', 'parse_mode' => "Markdown");
 
         $telegram->sendMessage($join_content);
     }
