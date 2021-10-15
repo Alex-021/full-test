@@ -118,12 +118,10 @@ if (!is_null($text) && !is_null($chat_id)) {
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
             $telegram->sendMessage($content);
-            
         $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
         گزینه مناسب را انتخاب کنید:
         ', 'parse_mode' => "Markdown");
         $telegram->sendMessage($content);
-
     }
     elseif ($text == 'فضایی') {
         $content = array('chat_id' => $chat_id, 'text' => "ناموصا اینو زدی ببینی شماره فضایی دارع؟ 😐");
