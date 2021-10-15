@@ -5,7 +5,7 @@ include 'Telegram.php';
 $bot_id = "2088394503:AAE-lF3-HYFf4FZH5GVlsJvg7j_6C3jiAoU";
 // Instances the class
 $telegram = new Telegram($bot_id);
-$admin = "271148667";
+$admin = 271148667;
 $text = $telegram->Text(); // متنی که کاربر ارسال میکنه
 $username = $telegram->Username(); // نام کاربری کاربر
 $name = $telegram->FirstName();
