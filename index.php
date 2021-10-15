@@ -13,7 +13,7 @@ $family = $telegram->LastName();
 $message_id = $telegram->MessageID(); // هر پیغام در تلگرام یک آیدی یکتا دارد
 $user_id = $telegram->UserID(); // آیدی یکتای کاربر
 $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگیرد، مثل خود بات یا آیدی گروه
-
+// [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
 if (!is_null($text) && !is_null($chat_id)) {
 
     $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
@@ -27,7 +27,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
             ),
             array(
-                $telegram->buildInlineKeyBoardButton(" عضو شدم ", $url="", $callback_data = "/start")
+                $telegram->buildInlineKeyBoardButton(" عضو شدم ","", $callback_data = "/start")
                 )
             );
             $keyb = $telegram->buildInlineKeyBoard($option);
@@ -37,8 +37,6 @@ if (!is_null($text) && !is_null($chat_id)) {
         ⭕️ لطفا در کانال زیر عضو شوید :
         
         🆔 @Rmn98
-
-        [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
         
         سپس به ربات برگشته و مجدد امتحان کنید ✔️', 'parse_mode' => "Markdown");
 
