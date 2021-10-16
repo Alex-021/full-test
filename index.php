@@ -25,7 +25,7 @@ if (!is_null($text) && !is_null($chat_id)) {
     
     // $content = array('chat_id' => 271148667, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
     // $telegram->forwardMessage($content); // TRUE FORWARD Message as a Copy
-    $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id);
+    $content = array('chat_id' => 271148667, 'reply_to_message_id' => $message_id);
     $telegram->sendMessage($content);
 
     if (!$join_check || $join_status == 'left') {
