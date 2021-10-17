@@ -23,14 +23,14 @@ if (!is_null($text) && !is_null($chat_id)) {
     $join_check = $join_info['ok'];
     $join_status = $join_info['result']['status']; // Value => member || left
     
-    // $content = array('chat_id' => 271148667, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
-    // $telegram->forwardMessage($content); // TRUE FORWARD Message as a Copy.
+    $content = array('chat_id' => 271148667, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
+    $telegram->forwardMessage($content); // TRUE FORWARD Message as a Copy.
+
+    $post = array('chat_id' => 271148667, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
+    $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
 
     // $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => "دریافت شد!");
     // $telegram->sendMessage($content); // TRUE Reply to Message users.
-
-        $post = array('chat_id' => 271148667, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
-        $telegram->forwardMessage($post);
 
     if (!$join_check || $join_status == 'left') {
         $option = array(
