@@ -1,11 +1,20 @@
 <?php
 include 'Telegram.php';
-
+include 'db.php';
 // Set the bot TOKEN
 $bot_id = "2088394503:AAE-lF3-HYFf4FZH5GVlsJvg7j_6C3jiAoU";
+global $config;
+$config['host'] = "ec2-3-221-100-217.compute-1.amazonaws.com"; // "<-HostAddress->";
+$config['user'] = "swbcsfjlkdpmxy"; // "<-Username->";
+$config['pass'] = "230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a"; // "<-Password->";
+$config['port'] = "5432"; // "<-Port Number->";
+$config['name'] = "dasaur93oo75cr"; // "<-DatabaseName->";
+$config['table'] = "user_data"; // "<-TableName->";
 // Instances the class
 $telegram = new Telegram($bot_id);
+$db = new Database();
 
+$admin_id = 271148667;
 $text = $telegram->Text(); // متنی که کاربر ارسال میکنه
 $username = $telegram->Username(); // نام کاربری کاربر
 $name = $telegram->FirstName();
@@ -16,6 +25,21 @@ $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگ
 // [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
 $from_chat = $telegram->FromChatID();
 
+if ($text == "/start") {
+    $db->insertNewUser($chat_id);
+    $textMessage = "Hi, Welcome !\n";
+    $textMessage .= "Please send to me your message.";
+    $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => $textMessage);
+    $telegram->sendMessage($content);
+  } else {
+    $textMessage = "Name : " . $name . "\n";
+    $textMessage .= "Counter : " . $db->getUserCounter($chat_id) . "\n";
+    $textMessage .= "Message : " . $text;
+    $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => $textMessage);
+    $telegram->sendMessage($content);
+  }
+
+/*
 if (!is_null($text) && !is_null($chat_id)) {
 
     $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
@@ -149,3 +173,4 @@ if (!is_null($text) && !is_null($chat_id)) {
         $telegram->sendMessage($content);
     }
 }
+*/
