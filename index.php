@@ -29,14 +29,16 @@ if ($db) {
     echo "Faild..."."<br>";
 }
 $val = 777;
-$sq = "SELECT * FROM user_data WHERE userid = $val;";
+$sq = "SELECT * FROM user_data";
 $res = $db->query($sq);
 echo "<br>";
 echo "<br>";
-// echo $res;
+while ($row = $res->fetch(PDO::FETCH_NUM)) {
+    var_dump($row);
+    }
 echo "<br>";
 echo "<br>";
-if ($res) {
+if ($row) {
     echo "Found IT!"."<br>";
 // $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
 // $n2 = $db->query($sql);
