@@ -33,7 +33,7 @@ $sq = "SELECT * FROM user_data WHERE userid = $val;";
 $res = $db->query($sq);
 echo "<br>";
 echo "<br>";
-echo $res;
+// echo $res;
 echo "<br>";
 echo "<br>";
 if ($res) {
