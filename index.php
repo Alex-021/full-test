@@ -34,7 +34,7 @@ $res = $db->query($sq);
 echo "<br>";
 echo "<br>";
 while ($row = $res->fetch(PDO::FETCH_NUM)) {
-    var_dump($row);
+    echo $row . "<br>";
     }
 echo "<br>";
 echo "<br>";
