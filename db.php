@@ -7,7 +7,7 @@ class Database {
     global $config;
     $this->connection = new mysqli($config['host'], $config['user'], $config['pass'], $config['name'], $config['port']);
     if ($this->connection->connect_error) {
-      echo "Connection failed: " . $this->connection->connect_error;
+    //   echo "Connection failed: " . $this->connection->connect_error;
       exit;
     }
     $this->query("SET NAMES 'ut8'");
@@ -25,9 +25,9 @@ class Database {
 
   public function getUserCounter($chatId) {
     global $config;
-    $result = $this->query("SELECT countMsg FROM " . $config['table'] . " WHERE userId LIKE '" . $chatId . "'");
-    $countMsg = $result->fetch_array()['countMsg'] + 1;
-    $this->query("UPDATE " . $config['table'] . " SET countMsg = '" . $countMsg . "' WHERE userId = '" . $chatId . "'");
+    $result = $this->query("SELECT countmsg FROM " . $config['table'] . " WHERE userid LIKE '" . $chatId . "'");
+    $countMsg = $result->fetch_array()['countmsg'] + 1;
+    $this->query("UPDATE " . $config['table'] . " SET countmsg = '" . $countMsg . "' WHERE userid = '" . $chatId . "'");
     return $countMsg;
   }
 }
