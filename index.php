@@ -1,25 +1,27 @@
 <?php
 
-echo "Hello Dear... \n\n";
+# This function reads your DATABASE_URL config var and returns a connection
+# string suitable for pg_connect. Put this in your app.
+function pg_connection_string_from_database_url() {
+  extract(parse_url($_ENV["postgres://swbcsfjlkdpmxy:230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a@ec2-3-221-100-217.compute-1.amazonaws.com:5432/dasaur93oo75cr
+  "]));
+  return "user=$user password=$pass host=$host dbname=" . substr($path, 1); # <- you may want to add sslmode=require there too
+}
 
-$host = "ec2-3-221-100-217.compute-1.dfgdfamaxzonaws.com";
-$dbname = "dasaur93gfoo75cr";
-$user = "swbcsfjlkgfdpmxy";
-$pass = "230f3b3e18c1b36230767101fb25aea1f19911c36ba6cc2af15b15822225b1e9az";
-$port = "5432";
-$ssl = "require";
+# Here we establish the connection. Yes, that's all.
+$pg_conn = pg_connect(pg_connection_string_from_database_url());
 
-   $con = "dbname=$dbname host=$host port=$port user=$user password=$pass sslmode=$ssl";
+# Now let's use the connection for something silly just to prove it works:
+$result = pg_query($pg_conn, "SELECT relname FROM pg_stat_user_tables WHERE schemaname='public'");
 
-   if (!$con) 
-   {
-     echo "Database connection failed.";
-   }
-   else 
-   {
-     echo "Database connection success.";
-   }
-
+print "<pre>\n";
+if (!pg_num_rows($result)) {
+  print("Your connection is working, but your database is empty.\nFret not. This is expected for new apps.\n");
+} else {
+  print "Tables in your database:\n";
+  while ($row = pg_fetch_row($result)) { print("- $row[0]\n"); }
+}
+print "\n";
 
 /*
 include 'Telegram.php';
