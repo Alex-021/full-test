@@ -45,6 +45,7 @@ $result->closeCursor();
   </table>
  </body>
 </html>
+<?php
 /*
 include 'Telegram.php';
 
