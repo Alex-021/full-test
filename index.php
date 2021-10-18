@@ -17,7 +17,7 @@
 echo "Hello Dear..."."<br>";
 $dsn = "pgsql:"
     . "host=ec2-3-221-100-217.compute-1.amazonaws.com;"
-    . "dbname=dzasaur93oo75cr;"
+    . "dbname=dasaur93oo75cr;"
     . "user=swbcsfjlkdpmxy;"
     . "port=5432;"
     . "sslmode=require;"
