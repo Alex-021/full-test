@@ -1,9 +1,15 @@
 <?php
 
-echo "Hello Dear...";
+echo "Hello Dear... /n/n";
 
-   $con = "dbname=dasaur93oo75cr host=ec2-3-221-100-217.compute-1.amazonaws.com port=5432 user=swbcsfjlkdpmxy password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a sslmode=require";
+$host = "ec2-3-221-100-217.compute-1.amazonaws.com";
+$dbname = "dasaur93oo75cr";
+$user = "swbcsfjlkdpmxy";
+$pass = "230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9az";
+$port = "5432";
+$ssl = "require";
 
+   $con = "dbname=$dbname host=$host port=$port user=$user password=$pass sslmode=$ssl";
 
    if (!$con) 
    {
