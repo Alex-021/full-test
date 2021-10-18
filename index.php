@@ -29,7 +29,8 @@ if ($db) {
     echo "Faild..."."<br>";
 }
 
-$query = "SELECT * FROM user_data;";
+
+$query = "SELECT * FROM user_data WHERE userid = 747;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
