@@ -29,8 +29,10 @@ if ($db) {
     echo "Faild..."."<br>";
 }
 
+$sql = "INSERT INTO user_data (userid, countmsg) VALUES (69, 85)";
+$db->query($sql);
 
-$query = "SELECT * FROM user_data WHERE userid = 747;";
+$query = "SELECT * FROM user_data;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
