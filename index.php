@@ -1,4 +1,5 @@
 <?php
+echo "Hello Dear..."."<br>";
 $dsn = "pgsql:"
     . "host=ec2-3-221-100-217.compute-1.amazonaws.com;"
     . "dbname=dasaur93oo75cr;"
@@ -9,15 +10,18 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 
+if ($db) {
+    echo "Connected!";
+} else {
+    echo "Faild...";
+}
 
 $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
-    echo "<td>" . $row["userID"] . "</td>";
-    echo "<td>" . htmlspecialchars($row["countMsG"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["title"]) . "</td>";
+    echo "<td>" . $row["userid"] . "</td>";
+    echo "<td>" . htmlspecialchars($row["countmsg"]) . "</td>";
     echo "</tr>";
 }
 $result->closeCursor();
