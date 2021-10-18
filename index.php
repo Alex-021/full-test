@@ -29,8 +29,14 @@ if ($db) {
     echo "Faild..."."<br>";
 }
 $val = 777;
-$sq = "SELECT * FROM user_data WHERE userid == $val;";
-if ($db->query($sq)) {
+$sq = "SELECT * FROM user_data WHERE userid = $val;";
+$res = $db->query($sq);
+echo "<br>";
+echo "<br>";
+echo $res;
+echo "<br>";
+echo "<br>";
+if ($res) {
     echo "Found IT!"."<br>";
 // $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
 // $n2 = $db->query($sql);
