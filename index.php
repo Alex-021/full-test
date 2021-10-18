@@ -29,8 +29,8 @@ if ($db) {
     echo "Faild..."."<br>";
 }
 
-$sql = "INSERT INTO user_data (userid, countmsg) VALUES (69, 85)";
-$db->query($sql);
+$sql = "INSERT INTO user_data (userid, countmsg) VALUES (11, 44)";
+$n2 = $db->query($sql);
 
 $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
@@ -40,6 +40,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<td>" . $row["countmsg"] . "</td>";
     echo "</tr>";
 }
+$n2->closeCursor();
 $result->closeCursor();
 ?>
    </tbody>
