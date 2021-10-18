@@ -1,4 +1,19 @@
 <?php
+
+   $con = "dbname=dasaur93oo75cr host=ec2-3-221-100-217.compute-1.amazonaws.com port=5432 user=swbcsfjlkdpmxy password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a sslmode=require";
+
+
+   if (!$con) 
+   {
+     echo "Database connection failed.";
+   }
+   else 
+   {
+     echo "Database connection success.";
+   }
+
+
+/*
 include 'Telegram.php';
 
 // Set the bot TOKEN
@@ -149,3 +164,4 @@ if (!is_null($text) && !is_null($chat_id)) {
         $telegram->sendMessage($content);
     }
 }
+*/
