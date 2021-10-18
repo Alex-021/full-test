@@ -1,9 +1,9 @@
 <?php
-echo "Hello Dear...<br>";
+echo "Hello Dear..."."<br>";
 $dsn = "pgsql:"
     . "host=ec2-3-221-100-217.compute-1.amazonaws.com;"
     . "dbname=dasaur93oo75cr;"
-    . "user=swbcsfjlkdpmxy;"
+    . "user=swbcsfjlkdpzmxy;"
     . "port=5432;"
     . "sslmode=require;"
     . "password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a";
