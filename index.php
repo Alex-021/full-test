@@ -1,9 +1,24 @@
+<html>
+ <head>
+  <title>Employees</title>
+ </head>
+ <body>
+  <table>
+   <thead>
+    <tr>
+     <th>Employee ID</th>
+     <th>Last Name</th>
+     <th>First Name</th>
+     <th>Title</th>
+    </tr>
+   </thead>
+   <tbody>
 <?php
 echo "Hello Dear..."."<br>";
 $dsn = "pgsql:"
     . "host=ec2-3-221-100-217.compute-1.amazonaws.com;"
-    . "dbname=dasaur93oo75cr;"
-    . "user=swbcsfjlkdpzmxy;"
+    . "dbname=dzasaur93oo75cr;"
+    . "user=swbcsfjlkdpmxy;"
     . "port=5432;"
     . "sslmode=require;"
     . "password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a";
@@ -25,6 +40,11 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "</tr>";
 }
 $result->closeCursor();
+?>
+   </tbody>
+  </table>
+ </body>
+</html>
 /*
 include 'Telegram.php';
 
