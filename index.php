@@ -1,11 +1,11 @@
 <?php
 
-echo "Hello Dear... /n/n";
+echo "Hello Dear... \n\n";
 
-$host = "ec2-3-221-100-217.compute-1.amazonaws.com";
-$dbname = "dasaur93oo75cr";
-$user = "swbcsfjlkdpmxy";
-$pass = "230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9az";
+$host = "ec2-3-221-100-217.compute-1.dfgdfamaxzonaws.com";
+$dbname = "dasaur93gfoo75cr";
+$user = "swbcsfjlkgfdpmxy";
+$pass = "230f3b3e18c1b36230767101fb25aea1f19911c36ba6cc2af15b15822225b1e9az";
 $port = "5432";
 $ssl = "require";
 
