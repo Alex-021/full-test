@@ -1,5 +1,5 @@
 <?php
-
+echo "Hello Dear..."."<br>";
 # This function reads your DATABASE_URL config var and returns a connection
 # string suitable for pg_connect. Put this in your app.
 function pg_connection_string_from_database_url() {
