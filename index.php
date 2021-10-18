@@ -33,7 +33,7 @@ $sq = "SELECT * FROM user_data";
 $res = $db->query($sq);
 echo "<br>";
 echo "<br>";
-while ($row = $res->fetch(PDO::FETCH_NUM)) {
+while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
     echo $row["userid"] . "<br>";
     }
 echo "<br>";
