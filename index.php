@@ -1,15 +1,13 @@
 <html>
  <head>
-  <title>Employees</title>
+  <title>Full Bot</title>
  </head>
  <body>
   <table>
    <thead>
     <tr>
-     <th>Employee ID</th>
-     <th>Last Name</th>
-     <th>First Name</th>
-     <th>Title</th>
+     <th> User ID </th>
+     <th> Count Message </th>
     </tr>
    </thead>
    <tbody>
