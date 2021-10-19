@@ -37,11 +37,11 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     if ($found) {
         echo "Found IT! : ";
         echo $found . "<br>";
-    $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
-    $n2 = $db->query($sql);
     }
     else {
         echo "Not Found...".$val."<br>";
+        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
+        $n2 = $db->query($sql);
     }
 echo "<br>";
 
