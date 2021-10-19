@@ -28,7 +28,7 @@ if ($db) {
 } else {
     echo "Faild..."."<br>";
 }
-$val = 659;
+$val = 771409211;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
@@ -41,7 +41,7 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     // $n2 = $db->query($sql);
     }
     else {
-        echo "Not Found..."."<br>";
+        echo "Not Found...".$val."<br>";
     }
 echo "<br>";
 
