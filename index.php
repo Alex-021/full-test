@@ -28,24 +28,24 @@ if ($db) {
 } else {
     echo "Faild..."."<br>";
 }
-$val = 747;
+$val = 777;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
-echo "<br>";
 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-    echo $row["userid"] . "<br>";
+    $found = $row["userid"];
+    if ($found) {
+        echo "Found IT! : ";
+        echo $found . "<br>";
+    // $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
+    // $n2 = $db->query($sql);
+    }
+    else {
+        echo "Not Found..."."<br>";
+    }
     }
 echo "<br>";
-echo "<br>";
-if ($row) {
-    echo "Found IT!"."<br>";
-// $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
-// $n2 = $db->query($sql);
-}
-else {
-    echo "Not Found..."."<br>";
-}
+
 $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
