@@ -32,7 +32,7 @@ $val = 777;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
-while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+$row = $res->fetch(PDO::FETCH_ASSOC);
     $found = $row["userid"];
     if ($found) {
         echo "Found IT! : ";
@@ -41,8 +41,7 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
     // $n2 = $db->query($sql);
     }
     else {
-        echo "Not Found..."."<br>";
-    }
+        echo "Not Found...".$found."<br>";
     }
 echo "<br>";
 
