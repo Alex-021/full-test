@@ -28,7 +28,7 @@ if ($db) {
 } else {
     echo "Faild..."."<br>";
 }
-$val = 771409211;
+$val = 5654;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
