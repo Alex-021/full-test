@@ -1,6 +1,23 @@
 <html>
  <head>
   <title>Full Bot</title>
+  <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
  </head>
  <body>
   <table>
@@ -8,6 +25,7 @@
     <tr>
      <th> User ID </th>
      <th> Count Message </th>
+     <th> User ID </th>
     </tr>
    </thead>
    <tbody>
