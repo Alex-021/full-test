@@ -14,7 +14,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #FFFFFF;
 }
 </style>
 </head>
@@ -23,9 +23,10 @@ tr:nth-child(even) {
   <table>
    <thead>
     <tr>
+    <th> User Number </th>
      <th> User ID </th>
      <th> Count Message </th>
-     <th> User ID </th>
+     <th> Last Message </th>
     </tr>
    </thead>
    <tbody>
