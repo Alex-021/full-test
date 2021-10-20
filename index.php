@@ -14,7 +14,8 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #FFFFFF;
+  background-color: #dddddd;
+  border: 1px solid #ffffff;
 }
 </style>
 </head>
@@ -66,13 +67,15 @@ echo "<br>";
 
 $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
+$i = 1;
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
-    echo "<td> #1 </td>";
+    echo "<td> #$i </td>";
     echo "<td>" . $row["userid"] . "</td>";
     echo "<td>" . $row["countmsg"] . "</td>";
     echo "<td></td>";
     echo "</tr>";
+    $i++;
 }
 $res->closeCursor();
 $result->closeCursor();
