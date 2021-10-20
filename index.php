@@ -260,17 +260,17 @@ if (!is_null($text) && !is_null($chat_id)) {
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                $t_id = $row["userid"];
-                $option += array(
-                    array(
-                        $telegram->buildKeyboardButton("$t_id"),
-                    )
-                ); 
-            }
-            $result->closeCursor();
+            // while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            //     $t_id = $row["userid"];
+            //     $option += array(
+            //         array(
+            //             $telegram->buildKeyboardButton("$t_id"),
+            //         )
+            //     ); 
+            // }
+            // $result->closeCursor();
 
-            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            // $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             لیست کاربران: 
