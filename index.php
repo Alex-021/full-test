@@ -265,7 +265,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $result = $db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $myArr[] = $telegram->buildKeyboardButton("$t_id");
+                $myArr[] = array($telegram->buildKeyboardButton("$t_id"));
             }
             // $option = array(
                 // array(
