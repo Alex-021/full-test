@@ -176,8 +176,12 @@ if (!is_null($text) && !is_null($chat_id)) {
         elseif ($text == '💡 راهنما') {
 
             $option = array(
-                array($telegram->buildKeyboardButton("📌 توضیحات")),
-                array($telegram->buildKeyboardButton("برگشت"))
+                array(
+                    $telegram->buildKeyboardButton("📌 توضیحات")
+                ),
+                array(
+                    $telegram->buildKeyboardButton("برگشت")
+                    )
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
@@ -256,20 +260,21 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == 'کاربران') {
-
+            $myArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $option = array(
-                    array(
-                        $telegram->buildKeyboardButton("$t_id"),
-                    )
-                ); 
+                $myArr[] = $telegram->buildKeyboardButton("$t_id");
             }
+            // $option = array(
+                // array(
+            $option = $myArr;
+                // ),
+            // );
             $result->closeCursor();
 
-            // $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             لیست کاربران: $t_id
