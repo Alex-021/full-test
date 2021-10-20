@@ -259,14 +259,13 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
-            $t_id = 9;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-            //     $option += array(
-            //         array(
-            //             $telegram->buildKeyboardButton("$t_id"),
-            //         )
-            //     ); 
+                $option = array(
+                    array(
+                        $telegram->buildKeyboardButton("$t_id"),
+                    )
+                ); 
             }
             $result->closeCursor();
 
@@ -277,7 +276,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
-        elseif ($text == 'کاربران') {
+        elseif ($text == 'من کی هستم؟') {
 
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
