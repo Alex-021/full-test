@@ -259,21 +259,31 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
-            
-            // while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            //     $t_id = $row["userid"];
+            $t_id = 9;
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $t_id = $row["userid"];
             //     $option += array(
             //         array(
             //             $telegram->buildKeyboardButton("$t_id"),
             //         )
             //     ); 
-            // }
-            // $result->closeCursor();
+            }
+            $result->closeCursor();
 
             // $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            لیست کاربران: 
+            لیست کاربران: $t_id
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == 'کاربران') {
+
+            $query = "SELECT * FROM user_data;";
+            $result = $db->query($query);
+
+            $content = array('chat_id' => $chat_id, 'text' => "
+            شما ادمین ربات هستید!
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
