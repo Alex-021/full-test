@@ -8,14 +8,13 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #505050;
   text-align: center;
   padding: 8px;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
-  border: 1px solid #ffffff;
 }
 </style>
 </head>
@@ -77,6 +76,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "</tr>";
     $i++;
 }
+echo "<br>".$i;
 $res->closeCursor();
 $result->closeCursor();
 ?>
