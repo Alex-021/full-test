@@ -41,7 +41,7 @@ $dsn = "pgsql:"
     . "password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a";
 
 $db = new PDO($dsn);
-
+echo "DB Status: ";
 if ($db) {
     echo "Connected!"."<br>";
 } else {
@@ -53,6 +53,7 @@ $res = $db->query($sq);
 echo "<br>";
 $row = $res->fetch(PDO::FETCH_ASSOC);
     $found = $row["userid"];
+    echo "ID Status: ";
     if ($found) {
         echo "Found IT! : ";
         echo $found . "<br>";
@@ -72,11 +73,10 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<td> #$i </td>";
     echo "<td>" . $row["userid"] . "</td>";
     echo "<td>" . $row["countmsg"] . "</td>";
-    echo "<td></td>";
+    echo "<td>/start</td>";
     echo "</tr>";
     $i++;
 }
-echo "<br>".$i;
 $res->closeCursor();
 $result->closeCursor();
 ?>
