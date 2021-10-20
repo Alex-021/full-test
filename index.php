@@ -47,7 +47,7 @@ if ($db) {
 } else {
     echo "Faild..."."<br>";
 }
-$val = 143;
+$val = 1718192034;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
@@ -59,7 +59,7 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     }
     else {
         echo "Not Found...".$val."<br>";
-        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 44)";
+        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 5)";
         $n2 = $db->query($sql);
     }
 echo "<br>";
@@ -71,6 +71,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<td> #1 </td>";
     echo "<td>" . $row["userid"] . "</td>";
     echo "<td>" . $row["countmsg"] . "</td>";
+    echo "<td></td>";
     echo "</tr>";
 }
 $res->closeCursor();
