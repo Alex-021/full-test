@@ -260,25 +260,22 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == 'کاربران') {
-            $mainArr = array();
+            $rowsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
+            $i = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $mainArr[] = array($telegram->buildKeyboardButton("$t_id"));
+                $rowsArr[] = array($telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id"));
+                $i++;
             }
-            // $option = array(
-                // array(
-            $option = $mainArr;
-                // ),
-            // );
+            $option = $rowsArr;
+ 
             $result->closeCursor();
-
-            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            لیست کاربران: $t_id
-            ", 'parse_mode' => "Markdown");
+            $keyb = $telegram->buildInlineKeyBoard($option);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
+            لیست کاربران: 
+            ', 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
         elseif ($text == 'من کی هستم؟') {
