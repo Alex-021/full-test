@@ -261,21 +261,23 @@ if (!is_null($text) && !is_null($chat_id)) {
         }
         elseif ($text == 'کاربران') {
             $rowsArr = array();
-            $colsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
-            $i = 1; $j = 1;
+            $i = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
+                $colsArr = array();
                 $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
-                $j++;
-                if ($j == 2) {
-                    $rowsArr[] += $colsArr;
-                    $j = 1;
+                if ($i % 2 == 0) {
+                    $rowsArr[] = $colsArr;
+                    unset($colsArr);
                 }
                 $i++;
             }
+            if ($i % 2 == 0)
+            $rowsArr[] = $colsArr;
             $option = $rowsArr;
+ 
             $result->closeCursor();
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
