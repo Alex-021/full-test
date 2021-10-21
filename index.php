@@ -243,12 +243,10 @@ if (!is_null($text) && !is_null($chat_id)) {
     }
     else {
         if ($text == '/start') {
-
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             *خوش امدید*
             
@@ -260,7 +258,6 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == 'کاربران') {
-            // $rowsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             $i = 1;
@@ -270,14 +267,12 @@ if (!is_null($text) && !is_null($chat_id)) {
                 if ($i % 2 == 0) {
                     $rowsArr[] = $colsArr;
                     unset($colsArr);
-                    $colsArr = array();
                 }
                 $i++;
             }
-            // if ($i % 2 == 0)
-            // $rowsArr[] = $colsArr;
+            if ($i % 2 == 0)
+            $rowsArr[] = $colsArr;
             $option = $rowsArr;
- 
             $result->closeCursor();
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
