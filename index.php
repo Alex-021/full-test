@@ -55,7 +55,7 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     $found = $row["userid"];
     echo "ID Status: ";
     if ($found) {
-        echo "Found IT! : ";
+        echo "Found it! : ";
         echo $found . "<br>";
     }
     else {
