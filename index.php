@@ -260,16 +260,20 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == 'کاربران') {
-            $myArr = array();
+            $mainArr = array();
+            $rowArr = array();
+            $colArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $myArr[] = array(array($telegram->buildInlineKeyBoardButton("$t_id")));
+                $colArr[] = array($telegram->buildInlineKeyBoardButton("$t_id"));
             }
+            $rowArr = $colArr;
+            $mainArr = $rowArr;
             // $option = array(
                 // array(
-            $option = $myArr;
+            $option = $mainArr;
                 // ),
             // );
             $result->closeCursor();
