@@ -264,16 +264,18 @@ if (!is_null($text) && !is_null($chat_id)) {
             $colsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
-            $i = 1;
+            $i = 1; $j = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
                 $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
-                if ($i % 3 == 0) 
-                $rowsArr[] = $colsArr;
+                $j++;
+                if ($j == 2) {
+                    $rowsArr[] += $colsArr;
+                    $j = 1;
+                }
                 $i++;
             }
             $option = $rowsArr;
- 
             $result->closeCursor();
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
