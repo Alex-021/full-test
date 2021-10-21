@@ -265,7 +265,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $result = $db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $myArr[] = array($telegram->buildKeyboardButton("$t_id"));
+                $myArr[] = array($telegram->buildInlineKeyBoardButton("$t_id"));
             }
             // $option = array(
                 // array(
@@ -274,7 +274,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             // );
             $result->closeCursor();
 
-            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $keyb = $telegram->buildInlineKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             لیست کاربران: $t_id
