@@ -86,7 +86,7 @@ $result->closeCursor();
 include 'Telegram.php';
 
 // Set the bot TOKEN
-$bot_id = "2088394503:AAE-lF3-HYFf4FZH5GVlsJvg7j_6C3jiAoU";
+$bot_id = "2088394503:AAGrodGdGqYOua-DoZrl_31AP6ZFSKXPHss";
 $admin_id = "271148667";
 // Instances the class
 $telegram = new Telegram($bot_id);
