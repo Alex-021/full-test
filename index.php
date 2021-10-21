@@ -267,9 +267,8 @@ if (!is_null($text) && !is_null($chat_id)) {
             $i = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                for ($j = 0; $j < 3; $j++) {
                 $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
-                }
+                if ($i % 3 == 0) 
                 $rowsArr[] = $colsArr;
                 $i++;
             }
