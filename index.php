@@ -270,7 +270,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                 for ($j = 0; $j < 3; $j++) {
                 $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
                 }
-                $rowsArr = $colsArr;
+                $rowsArr[] = $colsArr;
                 $i++;
             }
             $option = $rowsArr;
