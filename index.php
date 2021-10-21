@@ -261,12 +261,16 @@ if (!is_null($text) && !is_null($chat_id)) {
         }
         elseif ($text == 'کاربران') {
             $rowsArr = array();
+            $colsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             $i = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $rowsArr[] = array($telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id"));
+                for ($j = 0; $j < 3; $j++) {
+                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
+                }
+                $rowsArr = $colsArr;
                 $i++;
             }
             $option = $rowsArr;
@@ -285,6 +289,12 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $content = array('chat_id' => $chat_id, 'text' => "
             شما ادمین ربات هستید!
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        else {
+            $content = array('chat_id' => $chat_id, 'text' => "
+            مقدار وارد شده: $text
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
