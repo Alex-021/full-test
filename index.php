@@ -262,12 +262,14 @@ if (!is_null($text) && !is_null($chat_id)) {
         elseif ($text == 'کاربران') {
             $mainArr = array();
             $rowsArr = array();
+            $colsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $rowsArr[] = $telegram->buildKeyboardButton("$t_id");
+                $colsArr[] = $telegram->buildKeyboardButton("$t_id");
             }
+            $rowsArr[] = $colsArr;
             $mainArr[] = $rowsArr; 
             // $option = array(
                 // array(
