@@ -260,7 +260,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == 'کاربران') {
-            $rowsArr = array();
+            // $rowsArr = array();
             $query = "SELECT * FROM user_data;";
             $result = $db->query($query);
             $i = 1;
@@ -274,8 +274,8 @@ if (!is_null($text) && !is_null($chat_id)) {
                 }
                 $i++;
             }
-            if ($i % 2 == 0)
-            $rowsArr[] = $colsArr;
+            // if ($i % 2 == 0)
+            // $rowsArr[] = $colsArr;
             $option = $rowsArr;
  
             $result->closeCursor();
