@@ -69,7 +69,7 @@ $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
-    echo "<td>" . $row["user_number"] . "</td>";
+    echo "<td>#" . $row["user_number"] . "</td>";
     echo "<td>" . $row["userid"] . "</td>";
     echo "<td>" . $row["countmsg"] . "</td>";
     echo "<td>" . $row["last_msg"] . "</td>";
