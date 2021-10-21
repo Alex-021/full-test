@@ -273,9 +273,8 @@ if (!is_null($text) && !is_null($chat_id)) {
                 // ),
             // );
             $result->closeCursor();
-
-            $keyb = $telegram->buildInlineKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-
+            $keyb = $telegram->buildInlineKeyBoard($option);
+            // $keyb = $telegram->buildInlineKeyBoard($option, $onetime=true, $resize=true, $selective=true);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             لیست کاربران: $t_id
             ", 'parse_mode' => "Markdown");
