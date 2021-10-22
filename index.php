@@ -140,7 +140,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start') {
-            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id + 1);
             $telegram->deleteMessage($del_msg);
 
             $option = array(
