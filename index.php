@@ -117,13 +117,11 @@ if (!is_null($text) && !is_null($chat_id)) {
 
         // $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => "دریافت شد!");
         // $telegram->sendMessage($content); // TRUE Reply to Message users.
-        static $flag_left = false;
+
         if (!$join_check || $join_status == 'left') {
             $del_id = $message_id + 1;
-            if ($flag_left) {
-                $del_msg = array('chat_id' => $chat_id, 'message_id' => $del_id);
-                $telegram->deleteMessage($del_msg);
-            }
+            // $del_msg = array('chat_id' => $chat_id, 'message_id' => $del_id);
+            // $telegram->deleteMessage($del_msg);
             $option = array(
                 array(
                     $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
@@ -136,14 +134,13 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
         
-            ⭕️ لطفا در کانال زیر عضو شوید :
+            ⭕️ لطفا در کانال زیر عضو شوید : $message_id
             
-            🆔 @Rmn98
+            🆔 @Rmn98 $del_id
             
             سپس به ربات برگشته و مجدد امتحان کنید ✔️', 'parse_mode' => "Markdown");
 
             $telegram->sendMessage($join_content);
-            $flag_left = true;
         }
         elseif ($text == '/start') {
 
