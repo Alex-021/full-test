@@ -119,6 +119,9 @@ if (!is_null($text) && !is_null($chat_id)) {
         // $telegram->sendMessage($content); // TRUE Reply to Message users.
 
         if (!$join_check || $join_status == 'left') {
+            $del_id = $message_id - 1;
+            $del_msg = array('chat_id' => $chat_id, 'message_id' => $del_id);
+            $telegram->deleteMessage($del_msg);
             $option = array(
                 array(
                     $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
@@ -140,9 +143,6 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start') {
-            $del_id = $message_id - 1;
-            $del_msg = array('chat_id' => $chat_id, 'message_id' => $del_id);
-            $telegram->deleteMessage($del_msg);
 
             $option = array(
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات"))
