@@ -132,13 +132,13 @@ if (!is_null($text) && !is_null($chat_id)) {
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
 
-            $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
+            $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
         
             ⭕️ لطفا در کانال زیر عضو شوید : $message_id
             
             🆔 @Rmn98 $del_id
             
-            سپس به ربات برگشته و مجدد امتحان کنید ✔️', 'parse_mode' => "Markdown");
+            سپس به ربات برگشته و مجدد امتحان کنید ✔️", 'parse_mode' => "Markdown");
 
             $telegram->sendMessage($join_content);
         }
