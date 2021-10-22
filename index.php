@@ -115,8 +115,8 @@ if (!is_null($text) && !is_null($chat_id)) {
         $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
         $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
 
-        $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => "دریافت شد!");
-        $telegram->sendMessage($content); // TRUE Reply to Message users.
+        // $content = array('chat_id' => $chat_id, 'reply_to_message_id' => $message_id, 'text' => "دریافت شد!");
+        // $telegram->sendMessage($content); // TRUE Reply to Message users.
 
         if (!$join_check || $join_status == 'left') {
             $option = array(
@@ -140,6 +140,8 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start') {
+            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+            $telegram->deleteMessage($del_msg);
 
             $option = array(
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات"))
