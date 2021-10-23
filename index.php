@@ -119,7 +119,6 @@ if (!is_null($text) && !is_null($chat_id)) {
         // $telegram->sendMessage($content); // TRUE Reply to Message users.
 
         if (!$join_check || $join_status == 'left') {
-            $del_id = $message_id - 1;
             $option = array(
                 array(
                     $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
@@ -132,14 +131,14 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $join_content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "کاربر عزیز شما عضو کانال ما نیستید و امکان استفاده از ربات را ندارید ⚠️
         
-            ⭕️ لطفا در کانال زیر عضو شوید : $message_id
+            ⭕️ لطفا در کانال زیر عضو شوید :
             
-            🆔 @Rmn98 $del_id
+            🆔 @Rmn98
             
             سپس به ربات برگشته و مجدد امتحان کنید ✔️", 'parse_mode' => "Markdown");
 
             $telegram->sendMessage($join_content);
-             $del_msg = array('chat_id' => $chat_id, 'message_id' => $del_id);
+             $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->deleteMessage($del_msg);
         }
         elseif ($text == '/start') {
