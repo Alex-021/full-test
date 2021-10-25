@@ -243,8 +243,6 @@ if (!is_null($text) && !is_null($chat_id)) {
                       $telegram->buildInlineKeyBoardButton("لاین | Line", "", $callback_data = "line")),
                 array($telegram->buildInlineKeyBoardButton("استیم | Steam", "", $callback_data = "steam"), 
                       $telegram->buildInlineKeyBoardButton("توییتر | Twitter", "", $callback_data = "twitter")),
-                array($telegram->buildInlineKeyBoardButton("جیمیل | Gmail", "", $callback_data = "gmail"), 
-                      $telegram->buildInlineKeyBoardButton("مایکروسافت | Microsoft", "", $callback_data = "microsoft")),
                 array($telegram->buildInlineKeyBoardButton("یاهو | Yahoo!", "", $callback_data = "yahoo"), 
                       $telegram->buildInlineKeyBoardButton("لینکدین | LinkedIn", "", $callback_data = "linkedin")),
                 array($telegram->buildInlineKeyBoardButton("اپل | Apple", "", $callback_data = "apple"), 
@@ -252,7 +250,10 @@ if (!is_null($text) && !is_null($chat_id)) {
                 array($telegram->buildInlineKeyBoardButton("اسنپچت | Snapchat", "", $callback_data = "snapchat"), 
                       $telegram->buildInlineKeyBoardButton("سیگنال | Signal", "", $callback_data = "signal")),
                 array($telegram->buildInlineKeyBoardButton("تیک تاک | TikTok", "", $callback_data = "tiktok"), 
+                      $telegram->buildInlineKeyBoardButton("لایکی | Likee", "", $callback_data = "likee")),
+                array($telegram->buildInlineKeyBoardButton("جیمیل | Gmail", "", $callback_data = "gmail"), 
                       $telegram->buildInlineKeyBoardButton("شیائومی | Xiaomi", "", $callback_data = "xiaomi")),
+                array($telegram->buildInlineKeyBoardButton("مایکروسافت و سایر برنامه‌ها", "", $callback_data = "others")),
             );
             $keyb = $telegram->buildInlineKeyBoard($option, $placeholder = "از لیست بالا یک گزینه را انتخاب کنید");
 
