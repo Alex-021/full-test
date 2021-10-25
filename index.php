@@ -235,14 +235,14 @@ if (!is_null($text) && !is_null($chat_id)) {
                 array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
                 array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "whatsapp")),
                 array($telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "skype")),
+                array($telegram->buildInlineKeyBoardButton("نتفلیکس | Netflix", "", $callback_data = "netflix"),
+                $telegram->buildInlineKeyBoardutton("دیسکورد | DISCORD", "", $callback_data = "discord"))
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             
-            انتخاب کنید شماره چه کشوری می‌خواهید: 
-
-            و برای چه برنامه‌ای می خواهید: 
+            شماره مجازی برای چه برنامه‌ای لازم دارید؟
 
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
