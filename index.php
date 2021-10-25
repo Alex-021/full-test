@@ -322,7 +322,6 @@ if (!is_null($text) && !is_null($chat_id)) {
                     ", 'parse_mode' => "Markdown");
                     $telegram->sendMessage($content);
                     break;
-                    break;
             }
         }
     }
