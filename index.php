@@ -142,8 +142,8 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start' || $text == '➡️ برگشت') {
-            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-            $telegram->deleteMessage($del_msg);
+            // $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+            // $telegram->deleteMessage($del_msg);
             $option = array(
                 array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
@@ -157,7 +157,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             ربات شماره مجازی:
             ابتدا توضیحات و راهنما را مطالعه کنید.
 
-            ", 'parse_mode' => "Markdown", 'input_field_placeholder' => "یک گزینه را انتخاب کنید");
+            ", 'parse_mode' => "Markdown", 'input_field_placeholder' => "text...");
             $telegram->sendMessage($content);
         }
         elseif ($text == '💳 خرید شماره مجازی') {
@@ -206,7 +206,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
-        elseif ($text == '☎️ تماس با پشتیبانی 📞') {
+        elseif ($text == '💬 ارتباط با پشتیبانی') {
 
             $option = array(
                 array($telegram->buildKeyboardButton("➡️ برگشت"))
