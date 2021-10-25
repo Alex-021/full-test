@@ -229,23 +229,14 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == '💳 خرید شماره مجازی') {
-            /*
-            $option = array(
-                array($telegram->buildKeyboardButton("➡️ برگشت"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
-
-            // $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => " ", 'parse_mode' => "Markdown");
-            // $telegram->sendMessage($content);
-            */
 
             $option = array(
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
-                    ),
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
-                    )
+                array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "روسیه")),
+                array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "فضایی")),
+                array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "فضایی")),
+                array($telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "فضایی")),
+                array($telegram->buildInlineKeyBoardButton("نتفلیکس | Netflix", "", $callback_data = "فضایی"),
+                      $telegram->buildInlineKeyBoardutton("دیسکورد | DISCORD", "", $callback_data = "فضایی")),
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
 
