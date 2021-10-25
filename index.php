@@ -160,37 +160,6 @@ if (!is_null($text) && !is_null($chat_id)) {
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
-        elseif ($text == '💳 خرید شماره مجازی') {
-
-            $option = array(
-                array($telegram->buildKeyboardButton("➡️ برگشت"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            
-            انتخاب کنید شماره چه کشوری می‌خواهید: 
-
-            و برای چه برنامه‌ای می خواهید: 
-
-            ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-
-            $option = array(
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
-                ),
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
-                    )
-                );
-                $keyb = $telegram->buildInlineKeyBoard($option);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
-            گزینه مناسب را انتخاب کنید:
-            ', 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
         elseif ($text == '📌 توضیحات') {
 
             $option = array(
@@ -250,6 +219,35 @@ if (!is_null($text) && !is_null($chat_id)) {
             @ALI021m
 
             پیام بدید.
+
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == '💳 خرید شماره مجازی') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+
+            $option = array(
+                array(
+                    $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
+                ),
+                array(
+                    $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
+                    )
+                );
+                $keyb = $telegram->buildInlineKeyBoard($option);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            
+            انتخاب کنید شماره چه کشوری می‌خواهید: 
+
+            و برای چه برنامه‌ای می خواهید: 
 
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
