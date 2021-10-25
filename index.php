@@ -145,7 +145,9 @@ if (!is_null($text) && !is_null($chat_id)) {
             $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->deleteMessage($del_msg);
             $option = array(
-                array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات"))
+                array($telegram->buildKeyboardButton("💰 خرید شماره مجازی")),
+                array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات"),
+                array($telegram->buildKeyboardButton("📞 تماس با پشتیبانی")))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
