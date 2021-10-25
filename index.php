@@ -101,6 +101,9 @@ $chat_id = $telegram->ChatID(); // آیدی مکانی که چت صورت میگ
 // [ عضویت ](https://t.me/joinchat/UNWSodg8AsF4fA1U/)
 $from_chat = $telegram->FromChatID();
 
+    $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
+    $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
+
 if (!is_null($text) && !is_null($chat_id)) {
     if ($user_id != $admin_id) {
 
