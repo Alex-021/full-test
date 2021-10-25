@@ -160,6 +160,22 @@ if (!is_null($text) && !is_null($chat_id)) {
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
+        elseif ($text == '💳 خرید شماره مجازی') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            
+            انتخاب کنید شماره چه کشوری می‌خواهید: 
+
+            و برای چه برنامه‌ای می خواهید: 
+
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
         elseif ($text == '📌 توضیحات') {
 
             $option = array(
@@ -186,6 +202,23 @@ if (!is_null($text) && !is_null($chat_id)) {
             *خوش امدید*
             
             الان حسش نیست راهنمایی کنم 🤦🏻‍♂️😅
+
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == '☎️ تماس با پشتیبانی 📞') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            جهت تماس با ادمین به آیدی:
+
+            @ALI021m
+
+            پیام بدید.
 
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
