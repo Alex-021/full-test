@@ -230,22 +230,33 @@ if (!is_null($text) && !is_null($chat_id)) {
         }
         elseif ($text == '💳 خرید شماره مجازی') {
 
-            $option = array(
-                array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
-                array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
-                array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "whatsapp")),
-                array($telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "skype")),
-                array($telegram->buildInlineKeyBoardButton("نتفلیکس | Netflix", "", $callback_data = "netflix"),
-                $telegram->buildInlineKeyBoardutton("دیسکورد | DISCORD", "", $callback_data = "discord"))
-                );
-                $keyb = $telegram->buildInlineKeyBoard($option);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            
-            شماره مجازی برای چه برنامه‌ای لازم دارید؟
-
-            ", 'parse_mode' => "Markdown");
+            $option = array( 
+                //First row
+                array($telegram->buildInlineKeyBoardButton("Button 1", $url="http://link1.com"), $telegram->buildInlineKeyBoardButton("Button 2", $url="http://link2.com")), 
+                //Second row 
+                array($telegram->buildInlineKeyBoardButton("Button 3", $url="http://link3.com"), $telegram->buildInlineKeyBoardButton("Button 4", $url="http://link4.com"), $telegram->buildInlineKeyBoardButton("Button 5", $url="http://link5.com")), 
+                //Third row
+                array($telegram->buildInlineKeyBoardButton("Button 6", $url="http://link6.com")) );
+            $keyb = $telegram->buildInlineKeyBoard($option);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "This is a Keyboard Test");
             $telegram->sendMessage($content);
+
+            // $option = array(
+            //     array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
+            //     array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
+            //     array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "whatsapp")),
+            //     array($telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "skype")),
+            //     array($telegram->buildInlineKeyBoardButton("نتفلیکس | Netflix", "", $callback_data = "netflix"),
+            //     $telegram->buildInlineKeyBoardutton("دیسکورد | DISCORD", "", $callback_data = "discord"))
+            //     );
+            //     $keyb = $telegram->buildInlineKeyBoard($option);
+
+            // $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            
+            // شماره مجازی برای چه برنامه‌ای لازم دارید؟
+
+            // ", 'parse_mode' => "Markdown");
+            // $telegram->sendMessage($content);
         }
         elseif ($text == 'روسیه') {
             $option = array(
