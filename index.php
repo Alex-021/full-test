@@ -141,7 +141,7 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             $telegram->sendMessage($join_content);
         }
-        elseif ($text == '/start') {
+        elseif ($text == '/start' || $text == '➡️ برگشت') {
             $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->deleteMessage($del_msg);
             $option = array(
@@ -163,8 +163,7 @@ if (!is_null($text) && !is_null($chat_id)) {
         elseif ($text == '📌 توضیحات') {
 
             $option = array(
-                array($telegram->buildKeyboardButton("اطلاعات")),
-                array($telegram->buildKeyboardButton("💡 راهنما"))
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
@@ -179,12 +178,7 @@ if (!is_null($text) && !is_null($chat_id)) {
         elseif ($text == '💡 راهنما') {
 
             $option = array(
-                array(
-                    $telegram->buildKeyboardButton("📌 توضیحات")
-                ),
-                array(
-                    $telegram->buildKeyboardButton("برگشت")
-                    )
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
