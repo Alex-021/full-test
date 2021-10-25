@@ -126,7 +126,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                     $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
                 ),
                 array(
-                    $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "confirm")
+                    $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "/start")
                     )
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
@@ -242,8 +242,6 @@ if (!is_null($text) && !is_null($chat_id)) {
                     ),
                 array(
                     $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
-                    ),
-                array($telegram->buildKeyboardButton("➡️ برگشت")
                     )
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
