@@ -151,13 +151,14 @@ if (!is_null($text) && !is_null($chat_id)) {
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            $content = array('chat_id' => $chat_id, 'reply_markup' =>[$keyb, 'input_field_placeholder' => "text..."],
+             'text' => "
             *خوش امدید*
             
             ربات شماره مجازی:
             ابتدا توضیحات و راهنما را مطالعه کنید.
 
-            ", 'parse_mode' => "Markdown", 'input_field_placeholder' => "text...");
+            ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
         elseif ($text == '💳 خرید شماره مجازی') {
