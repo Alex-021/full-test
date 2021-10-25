@@ -149,7 +149,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
                 array($telegram->buildKeyboardButton("💬 ارتباط با پشتیبانی"))
             );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=false, $selective=false, $placeholder="یک گزینه را انتخاب کنید");
+            $keyb = $telegram->buildKeyBoard($option, $resize=true, $placeholder="یک گزینه را انتخاب کنید");
 
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             *خوش امدید*
