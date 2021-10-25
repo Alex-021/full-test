@@ -126,7 +126,7 @@ if (!is_null($text) && !is_null($chat_id)) {
                     $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
                 ),
                 array(
-                    $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "/start")
+                    $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "confirm")
                     )
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
@@ -142,8 +142,8 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start' || $text == '➡️ برگشت') {
-            // $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-            // $telegram->deleteMessage($del_msg);
+            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+            $telegram->deleteMessage($del_msg);
             $option = array(
                 array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
@@ -175,55 +175,7 @@ if (!is_null($text) && !is_null($chat_id)) {
 
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
-        }
-        elseif ($text == '📌 توضیحات') {
 
-            $option = array(
-                array($telegram->buildKeyboardButton("➡️ برگشت"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            *خوش امدید*
-            
-            اطلاعات رو بزن ببین چه باحالع :))
-
-            ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
-        elseif ($text == '💡 راهنما') {
-
-            $option = array(
-                array($telegram->buildKeyboardButton("➡️ برگشت"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            *خوش امدید*
-            
-            الان حسش نیست راهنمایی کنم 🤦🏻‍♂️😅
-
-            ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
-        elseif ($text == '💬 ارتباط با پشتیبانی') {
-
-            $option = array(
-                array($telegram->buildKeyboardButton("➡️ برگشت"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
-
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            جهت تماس با ادمین به آیدی:
-
-            @ALI021m
-
-            پیام بدید.
-
-            ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
-        elseif ($text == 'برگشت') {
             $option = array(
                 array(
                     $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
@@ -237,6 +189,69 @@ if (!is_null($text) && !is_null($chat_id)) {
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
             گزینه مناسب را انتخاب کنید:
             ', 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == '📌 توضیحات') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            
+            متن توضیحات
+            .
+            . 
+            . 
+            . 
+            . 
+            . 
+            . 
+            پایان متن توضیحات ربات
+
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == '💡 راهنما') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            
+            متن راهنمای ربات
+            . 
+            . 
+            . 
+            . 
+            . 
+            . 
+            . 
+            . 
+            پایان متن راهنمای ربات
+
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == '💬 ارتباط با پشتیبانی') {
+
+            $option = array(
+                array($telegram->buildKeyboardButton("➡️ برگشت"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+
+            جهت تماس با ادمین به آیدی:
+
+            @ALI021m
+
+            پیام بدید.
+
+            ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
         elseif ($text == 'روسیه') {
