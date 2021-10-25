@@ -293,6 +293,38 @@ if (!is_null($text) && !is_null($chat_id)) {
                                 آیدی شما: $user_id", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
+        else {
+            switch ($text) {
+                case 'telegram':
+                    $option = array(array($telegram->buildKeyboardButton("خرید شماره روسیه")));
+                    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+                    $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+                    آیا از خرید شماره مجازی روسیه
+                     برای تلگرام مطمئن هستید؟
+                    ", 'parse_mode' => "Markdown");
+                    $telegram->sendMessage($content);
+                    break;
+                case 'instagram':
+                    $option = array(array($telegram->buildKeyboardButton("خرید شماره آلمان")));
+                    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+                    $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+                    آیا از خرید شماره مجازی المان
+                        برای اینستاگرام مطمئن هستید؟
+                    ", 'parse_mode' => "Markdown");
+                    $telegram->sendMessage($content);
+                    break;
+                
+                default:
+                    $option = array(array($telegram->buildKeyboardButton("➡️ برگشت")));
+                    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+                    $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+                    این بخش درحال تکمیل می‌باشد...
+                    ", 'parse_mode' => "Markdown");
+                    $telegram->sendMessage($content);
+                    break;
+                    break;
+            }
+        }
     }
     else {
         if ($text == '/start') {
