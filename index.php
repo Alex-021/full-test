@@ -142,8 +142,10 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($join_content);
         }
         elseif ($text == '/start' || $text == '➡️ برگشت') {
-            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-            $telegram->deleteMessage($del_msg);
+            if ($text == '/start') {
+                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+                $telegram->deleteMessage($del_msg);
+            }
             $option = array(
                 array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
@@ -224,21 +226,24 @@ if (!is_null($text) && !is_null($chat_id)) {
             $telegram->sendMessage($content);
         }
         elseif ($text == '💳 خرید شماره مجازی') {
-
+            /*
             $option = array(
                 array($telegram->buildKeyboardButton("➡️ برگشت"))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => " ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
+            // $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => " ", 'parse_mode' => "Markdown");
+            // $telegram->sendMessage($content);
+            */
 
             $option = array(
                 array(
                     $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
-                ),
+                    ),
                 array(
                     $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
+                    ),
+                array($telegram->buildKeyboardButton("➡️ برگشت")
                     )
                 );
                 $keyb = $telegram->buildInlineKeyBoard($option);
