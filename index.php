@@ -230,7 +230,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
 
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "", 'parse_mode' => "Markdown");
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => " ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
 
             $option = array(
