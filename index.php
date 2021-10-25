@@ -243,6 +243,16 @@ if (!is_null($text) && !is_null($chat_id)) {
                       $telegram->buildInlineKeyBoardButton("لاین | Line", "", $callback_data = "line")),
                 array($telegram->buildInlineKeyBoardButton("استیم | Steam", "", $callback_data = "steam"), 
                       $telegram->buildInlineKeyBoardButton("توییتر | Twitter", "", $callback_data = "twitter")),
+                array($telegram->buildInlineKeyBoardButton("جیمیل | Gmail", "", $callback_data = "steam"), 
+                      $telegram->buildInlineKeyBoardButton("مایکروسافت | Microsoft", "", $callback_data = "twitter")),
+                array($telegram->buildInlineKeyBoardButton("یاهو | Yahoo!", "", $callback_data = "steam"), 
+                      $telegram->buildInlineKeyBoardButton("لینکدین | LinkedIn", "", $callback_data = "twitter")),
+                array($telegram->buildInlineKeyBoardButton("اپل | Apple", "", $callback_data = "steam"), 
+                      $telegram->buildInlineKeyBoardButton("آمازون | Amazon", "", $callback_data = "twitter")),
+                array($telegram->buildInlineKeyBoardButton("اسنپچت | Snapchat", "", $callback_data = "steam"), 
+                      $telegram->buildInlineKeyBoardButton("سیگنال | Signal", "", $callback_data = "twitter")),
+                array($telegram->buildInlineKeyBoardButton("تیک تاک | TikTok", "", $callback_data = "steam"), 
+                      $telegram->buildInlineKeyBoardButton("شیائومی | Xiaomi", "", $callback_data = "twitter")),
             );
             $keyb = $telegram->buildInlineKeyBoard($option, $placeholder = "از لیست بالا یک گزینه را انتخاب کنید");
 
