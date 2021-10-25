@@ -147,7 +147,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             $option = array(
                 array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
                 array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
-                array($telegram->buildKeyboardButton("☎️ تماس با پشتیبانی 📞"))
+                array($telegram->buildKeyboardButton("💬 تماس با پشتیبانی"))
             );
             $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
 
