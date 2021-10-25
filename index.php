@@ -231,10 +231,10 @@ if (!is_null($text) && !is_null($chat_id)) {
         elseif ($text == '💳 خرید شماره مجازی') {
 
             $option = array(
-                array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
                 array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
-                array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "whatsapp")),
-                array($telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "skype")),
+                array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
+                array($telegram->buildInlineKeyBoardButton("واتساپ | WhatsApp", "", $callback_data = "whatsapp"),
+                      $telegram->buildInlineKeyBoardButton("اسکایپ | Skype", "", $callback_data = "skype")),
                 array($telegram->buildInlineKeyBoardButton("نتفلیکس | Netflix", "", $callback_data = "netflix"), 
                       $telegram->buildInlineKeyBoardButton("دیسکورد | DISCORD", "", $callback_data = "discord"))
             );
