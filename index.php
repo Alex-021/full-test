@@ -157,7 +157,7 @@ if (!is_null($text) && !is_null($chat_id)) {
             ربات شماره مجازی:
             ابتدا توضیحات و راهنما را مطالعه کنید.
 
-            ", 'parse_mode' => "Markdown", 'input_field_placeholder'=>'یک گزینه را انتخاب کنید:');
+            ", 'parse_mode' => "Markdown", 'input_field_placeholder' => "یک گزینه را انتخاب کنید");
             $telegram->sendMessage($content);
         }
         elseif ($text == '💳 خرید شماره مجازی') {
