@@ -96,6 +96,17 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
             }
             $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
+            $content = array('chat_id' => $admin_id, 'text' => " 
+            نام: $name
+            نام خانوادگی: $family
+            نام کاربری: $username
+            آیدی عددی کاربر: $user_id
+            متن ارسالی: $text
+            آیدی پیام: $message_id
+            آیدی محل چت: $chat_id
+            از کجا ارسال شده: $from_chat
+            ", 'parse_mode' => "Markdown");
+        $telegram->sendMessage($content);
         }
         $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
         $telegram->deleteMessage($del_msg);
