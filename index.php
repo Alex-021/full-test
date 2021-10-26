@@ -104,7 +104,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
             ),
             array(
-                $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "/start")
+                $telegram->buildInlineKeyBoardButton(" عضو شدم ", "", $callback_data = "confirm")
                 )
             );
             $keyb = $telegram->buildInlineKeyBoard($option);
@@ -120,6 +120,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     }
     else { # Channel Ok!
         $t_start = "/start";
+        $confirm = "confirm";
         $t_back = "➡️ برگشت";
         $t_info = "💡 راهنما";
         $t_desc = "📌 توضیحات";
@@ -127,6 +128,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         $t_contact = "💬 ارتباط با پشتیبانی";
         switch ($text) {
             case $t_start:
+            case $confirm:
                 $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
                 $telegram->deleteMessage($del_msg);
                 $option = array(array($telegram->buildKeyboardButton($t_buy)),
