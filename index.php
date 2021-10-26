@@ -35,7 +35,7 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     }
     else {
         echo "Not Found...".$val."<br>";
-        $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($val, 'ALI')";
+        $sql = "INSERT INTO user_data (userid, fname) VALUES ($val, 'ALI')";
         $db->query($sql);
     }
 echo "<br>";
