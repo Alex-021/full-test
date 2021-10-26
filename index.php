@@ -119,7 +119,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $result->closeCursor();
                 $found = $row["userid"];
                 if (!$found) {
-                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, 'Reza')";
+                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, '$name')";
                     $insert = $db->query($sql);
                     $insert->closeCursor();
                 }
