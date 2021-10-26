@@ -70,7 +70,7 @@ $result->closeCursor();
 </html>
 <?php
 include 'Telegram.php';
-// include 'db.php';
+include 'db.php';
 // Set the bot TOKEN
 $bot_id = "2088394503:AAGrodGdGqYOua-DoZrl_31AP6ZFSKXPHss";
 $admin_id = "271148667";
