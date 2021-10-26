@@ -117,9 +117,9 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
             case $t_start:
                 $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
                 $telegram->deleteMessage($del_msg);
-                $option = array(array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
-                    array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
-                    array($telegram->buildKeyboardButton("💬 ارتباط با پشتیبانی")));
+                $option = array(array($telegram->buildKeyboardButton($t_buy)),
+                    array($telegram->buildKeyboardButton("$_info"),$telegram->buildKeyboardButton("$t_desc")),
+                    array($telegram->buildKeyboardButton($t_contact)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false, $placeholder="یک گزینه را انتخاب کنید");
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 *خوش امدید*
