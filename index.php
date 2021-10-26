@@ -83,6 +83,20 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     $join_status = $join_info['result']['status']; // Value => member || left
     $join_check = $join_info['ok'];
     if (!$join_check || $join_status == 'left') { // Is Not Join to Channel! //
+        if ($text == '/start') {
+            $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+            $result = $db->query($sql);
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            $result->closeCursor();
+            $found = $row["userid"];
+            if (!$found) {
+                $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
+                $insert = $db->query($sql);
+                $insert->closeCursor();
+            }
+            $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
+            $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
+        }
         $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
         $telegram->deleteMessage($del_msg);
         $option = array(
@@ -113,16 +127,6 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         $t_contact = "💬 ارتباط با پشتیبانی";
         switch ($text) {
             case $t_start:
-                $sql = "SELECT * FROM user_data WHERE userid = $user_id";
-                $result = $db->query($sql);
-                $row = $result->fetch(PDO::FETCH_ASSOC);
-                $result->closeCursor();
-                $found = $row["userid"];
-                if (!$found) {
-                    $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
-                    $insert = $db->query($sql);
-                    $insert->closeCursor();
-                }
                 $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
                 $telegram->deleteMessage($del_msg);
                 $option = array(array($telegram->buildKeyboardButton($t_buy)),
