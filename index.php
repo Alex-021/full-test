@@ -118,7 +118,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
                 $telegram->deleteMessage($del_msg);
                 $option = array(array($telegram->buildKeyboardButton($t_buy)),
-                    array($telegram->buildKeyboardButton("$_info"),$telegram->buildKeyboardButton("$t_desc")),
+                    array($telegram->buildKeyboardButton($t_info),$telegram->buildKeyboardButton($t_desc)),
                     array($telegram->buildKeyboardButton($t_contact)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false, $placeholder="یک گزینه را انتخاب کنید");
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
@@ -131,9 +131,9 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $telegram->sendMessage($content);
                 break;
             case $t_back:
-                $option = array(array($telegram->buildKeyboardButton("💳 خرید شماره مجازی")),
-                    array($telegram->buildKeyboardButton("💡 راهنما"),$telegram->buildKeyboardButton("📌 توضیحات")),
-                    array($telegram->buildKeyboardButton("💬 ارتباط با پشتیبانی")));
+                $option = array(array($telegram->buildKeyboardButton($t_buy)),
+                    array($telegram->buildKeyboardButton($t_info),$telegram->buildKeyboardButton($t_desc)),
+                    array($telegram->buildKeyboardButton($t_contact)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false, $placeholder="یک گزینه را انتخاب کنید");
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 *به منوی اصلی بازگشتید*
@@ -145,7 +145,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $telegram->sendMessage($content);
                 break;
             case $t_desc:
-                $option = array(array($telegram->buildKeyboardButton("➡️ برگشت")));
+                $option = array(array($telegram->buildKeyboardButton($t_back)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 
@@ -163,7 +163,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $telegram->sendMessage($content);
                 break;
             case $t_info:
-                $option = array(array($telegram->buildKeyboardButton("➡️ برگشت")));
+                $option = array(array($telegram->buildKeyboardButton($t_back)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 
@@ -182,7 +182,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $telegram->sendMessage($content);
                 break;
             case $t_contact:
-                $option = array(array($telegram->buildKeyboardButton("➡️ برگشت")));
+                $option = array(array($telegram->buildKeyboardButton($t_back)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=false);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
 
@@ -255,7 +255,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
             //     # code...
             //     break;
             default:
-                $option = array(array($telegram->buildKeyboardButton("➡️ برگشت")));
+                $option = array(array($telegram->buildKeyboardButton($t_back)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 این بخش درحال تکمیل می‌باشد...
