@@ -119,7 +119,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $result->closeCursor();
                 $found = $row["userid"];
                 if (!$found) {
-                    $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($user_id, 222)";
+                    $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, $name, $family)";
                     $insert = $db->query($sql);
                     $insert->closeCursor();
                 }
