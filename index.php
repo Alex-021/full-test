@@ -119,8 +119,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $result->closeCursor();
                 $found = $row["userid"];
                 if (!$found) {
-                    $full_name = $name.":".$family;
-                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, $full_name)";
+                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, $name)";
                     $insert = $db->query($sql);
                     $insert->closeCursor();
                 }
