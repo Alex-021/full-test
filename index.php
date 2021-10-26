@@ -119,7 +119,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                 $result->closeCursor();
                 $found = $row["userid"];
                 if (!$found) {
-                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, $name)";
+                    $sql = "INSERT INTO user_data (userid, fname) VALUES ($user_id, 'Reza')";
                     $insert = $db->query($sql);
                     $insert->closeCursor();
                 }
@@ -256,12 +256,17 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
                     ", 'parse_mode' => "Markdown");
                     $telegram->sendMessage($content);
                 break;
+            case "نام":
+                $option = array(array($telegram->buildKeyboardButton($t_back)));
+                $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+                $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+                نام شما: $name
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
+                break;
             case "value":
                 # code...
                 break;
-            // case "value":
-            //     # code...
-            //     break;
             default:
                 $option = array(array($telegram->buildKeyboardButton($t_back)));
                 $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
