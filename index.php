@@ -14,8 +14,8 @@
     <tr>
     <th> User Number </th>
      <th> User ID </th>
-     <th> Count Message </th>
-     <th> Last Message </th>
+     <th> First Name </th>
+     <th> Last Name </th>
     </tr>
    </thead>
    <tbody>
@@ -35,8 +35,8 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     }
     else {
         echo "Not Found...".$val."<br>";
-        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 555)";
-        $n2 = $db->query($sql);
+        $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($val, 'ALI')";
+        $db->query($sql);
     }
 echo "<br>";
 
@@ -44,10 +44,10 @@ $query = "SELECT * FROM user_data;";
 $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
-    echo "<td>#" . $row["user_number"] . "</td>";
+    echo "<td>#" . $row["number"] . "</td>";
     echo "<td>" . $row["userid"] . "</td>";
-    echo "<td>" . $row["countmsg"] . "</td>";
-    echo "<td>" . $row["last_msg"] . "</td>";
+    echo "<td>" . $row["fname"] . "</td>";
+    echo "<td>" . $row["lname"] . "</td>";
     echo "</tr>";
 }
 $res->closeCursor();
@@ -296,7 +296,8 @@ else { // Is ADMIN //
             $i = 1;
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
-                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر: #$i","", "$t_id");
+                $t_fname = $row["fname"];
+                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$i: $t_fname","", "$t_id");
                 if ($i % 2 == 0) {
                     $rowsArr[] = $colsArr;
                     unset($colsArr);
