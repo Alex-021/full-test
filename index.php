@@ -32,21 +32,7 @@
    <tbody>
 <?php
 echo "Hello Dear..."."<br>";
-$dsn = "pgsql:"
-    . "host=ec2-3-221-100-217.compute-1.amazonaws.com;"
-    . "dbname=dasaur93oo75cr;"
-    . "user=swbcsfjlkdpmxy;"
-    . "port=5432;"
-    . "sslmode=require;"
-    . "password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a";
 
-$db = new PDO($dsn);
-echo "DB Status: ";
-if ($db) {
-    echo "Connected!"."<br>";
-} else {
-    echo "Faild..."."<br>";
-}
 $val = 1718192034;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
@@ -84,7 +70,7 @@ $result->closeCursor();
 </html>
 <?php
 include 'Telegram.php';
-
+// include 'db.php';
 // Set the bot TOKEN
 $bot_id = "2088394503:AAGrodGdGqYOua-DoZrl_31AP6ZFSKXPHss";
 $admin_id = "271148667";
@@ -264,35 +250,6 @@ if (!is_null($text) && !is_null($chat_id)) {
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
         }
-        elseif ($text == 'روسیه') {
-            $option = array(
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
-                ),
-                array(
-                    $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
-                    )
-                );
-                $keyb = $telegram->buildInlineKeyBoard($option);
-                $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
-                $telegram->sendMessage($content);
-            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
-            گزینه مناسب را انتخاب کنید:
-            ', 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
-        elseif ($text == 'فضایی') {
-            $content = array('chat_id' => $chat_id, 'text' => "ناموصا اینو زدی ببینی شماره فضایی دارع؟ 😐");
-            $telegram->sendMessage($content);
-        }
-        elseif ($text == 'اطلاعات') {
-            $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
-                                نام کاربری شما: $username
-                                *نام شما:* $name
-                                فامیلی شما: $family
-                                آیدی شما: $user_id", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
-        }
         else {
             switch ($text) {
                 case 'telegram':
@@ -324,8 +281,16 @@ if (!is_null($text) && !is_null($chat_id)) {
                     break;
             }
         }
-    }
-    else {
+    } //////////////////////////////ADMIN SECTION///////////////////////////////
+    else {/*
+        elseif ($text == 'اطلاعات') {
+            $content = array('chat_id' => $chat_id, 'text' => "متن ارسال شما: $text
+                                نام کاربری شما: $username
+                                *نام شما:* $name
+                                فامیلی شما: $family
+                                آیدی شما: $user_id", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }*/
         if ($text == '/start') {
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
@@ -382,3 +347,27 @@ if (!is_null($text) && !is_null($chat_id)) {
         }
     }
 }
+
+/*
+        elseif ($text == 'روسیه') {
+            $option = array(
+                array(
+                    $telegram->buildInlineKeyBoardButton(" درخواست شماره مجازی ", "", $callback_data = "روسیه")
+                ),
+                array(
+                    $telegram->buildInlineKeyBoardButton(" درخواست شماره فضایی😐 ", "", $callback_data = "فضایی")
+                    )
+                );
+                $keyb = $telegram->buildInlineKeyBoard($option);
+                $content = array('chat_id' => $chat_id, 'text' => "فعلا علی خسته شدع بقیه رباتو بعدا میسازع");
+                $telegram->sendMessage($content);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
+            گزینه مناسب را انتخاب کنید:
+            ', 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+        }
+        elseif ($text == 'فضایی') {
+            $content = array('chat_id' => $chat_id, 'text' => "ناموصا اینو زدی ببینی شماره فضایی دارع؟ 😐");
+            $telegram->sendMessage($content);
+        }
+*/
