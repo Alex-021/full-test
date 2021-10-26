@@ -82,7 +82,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     $join_info = $telegram->getChatMember($join_channel);
     $join_status = $join_info['result']['status']; // Value => member || left
     $join_check = $join_info['ok'];
-    if (!$join_check || $join_status == 'left') { // Channel Check!
+    if (!$join_check || $join_status == 'left') { // Channel Not Ok!
         $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
         $telegram->deleteMessage($del_msg);
         $option = array(
@@ -102,7 +102,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         🆔 @Rmn98
         
         سپس به ربات برگشته و مجدد امتحان کنید ✔️", 'parse_mode' => "Markdown");
-
+        $telegram->buildKeyBoardHide($selective = true);
         $telegram->sendMessage($join_content);
     }
     else { # Channel Ok!
