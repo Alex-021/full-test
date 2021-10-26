@@ -102,8 +102,8 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         🆔 @Rmn98
         
         سپس به ربات برگشته و مجدد امتحان کنید ✔️", 'parse_mode' => "Markdown");
-        $telegram->buildKeyBoardHide($selective = true);
         $telegram->sendMessage($join_content);
+        $telegram->buildKeyBoardHide($selective = true);
     }
     else { # Channel Ok!
         $t_start = "/start";
