@@ -6,7 +6,6 @@ $dsn = "pgsql:"
 . "port=5432;"
 . "sslmode=require;"
 . "password=230f3b3e18c1b36230767101fb25aea119911c36ba6cc2af15b15822225b1e9a";
-
 $db = new PDO($dsn);
 echo "DB Status: ";
 if ($db) {
