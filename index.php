@@ -22,8 +22,7 @@
 <?php
 include 'db.php';
 echo "Hello Dear..."."<br>";
-
-$val = 1718192034;
+$val = 2718192035;
 $sq = "SELECT * FROM user_data WHERE userid = $val";
 $res = $db->query($sq);
 echo "<br>";
@@ -36,7 +35,7 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
     }
     else {
         echo "Not Found...".$val."<br>";
-        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 5)";
+        $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($val, 555)";
         $n2 = $db->query($sql);
     }
 echo "<br>";
@@ -115,6 +114,16 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         $t_contact = "💬 ارتباط با پشتیبانی";
         switch ($text) {
             case $t_start:
+                $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+                $result = $db->query($sql);
+                $row = $result->fetch(PDO::FETCH_ASSOC);
+                $result->closeCursor();
+                $found = $row["userid"];
+                if (!$found) {
+                    $sql = "INSERT INTO user_data (userid, countmsg) VALUES ($user_id, 222)";
+                    $insert = $db->query($sql);
+                    $insert->closeCursor();
+                }
                 $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
                 $telegram->deleteMessage($del_msg);
                 $option = array(array($telegram->buildKeyboardButton($t_buy)),
