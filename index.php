@@ -60,8 +60,8 @@ $result->closeCursor();
 <?php
 include 'Telegram.php';
 // Set the bot TOKEN
-$bot_id = "2088394503:AAHzRy9RPDKQWLaRgr5Ytfd6-qeweTKJPTQ";
-$admin_id = "2711486671";
+$bot_id = "2088394503:AAGrodGdGqYOua-DoZrl_31AP6ZFSKXPHss";
+$admin_id = "271148667";
 // Instances the class
 $telegram = new Telegram($bot_id);
 
@@ -84,9 +84,15 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     $join_check = $join_info['ok'];
     if (!$join_check || $join_status == 'left') { // Is Not Join to Channel! //
         if ($text == '/start') {
-            $found = searchId($db, $user_id);
+            $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+            $result = $db->query($sql);
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            $result->closeCursor();
+            $found = $row["userid"];
             if (!$found) {
-                insertUser($db, $user_id, $name, $family);
+                $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
+                $insert = $db->query($sql);
+                $insert->closeCursor();
             }
             $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
@@ -307,7 +313,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "کاربران":
-            $option = getList($db, $telegram);
+            $option = getList($telegram, $db);
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
             لیست کاربران: 
@@ -324,54 +330,13 @@ else { // Is ADMIN //
             break;
         
         default:
-            $found = searchId($db, $text);
-            if (!$found) {
-                $content = array('chat_id' => $chat_id, 'text' => "
-                دستور ناشناخته: $text
-                ", 'parse_mode' => "Markdown");
-                $telegram->sendMessage($content);
-            }
-            else {
-                $content = array('chat_id' => $chat_id, 'text' => "
-                کاربر: $text
-                ", 'parse_mode' => "Markdown");
-                $telegram->sendMessage($content);
-            }
+            
+            $content = array('chat_id' => $chat_id, 'text' => "
+            مقدار وارد شده: $text
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
             break;
     }
 }
 
-//////// Functions Section ////////
-function getList($db, $telegram) {
-    $query = "SELECT * FROM user_data;";
-    $result = $db->query($query);
-    $i = 1;
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $t_id = $row["userid"];
-        $t_fname = $row["fname"];
-        $num = $row["number"];
-        $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
-        if ($i % 2 == 0) {
-            $rowsArr[] = $colsArr;
-            unset($colsArr);
-        }
-        $i++;
-    }
-    if ($i % 2 == 0)
-    $rowsArr[] = $colsArr;
-    $result->closeCursor();
-    return $rowsArr;
-}
-function searchId($db, $user_id) {
-    $sql = "SELECT * FROM user_data WHERE userid = $user_id";
-    $result = $db->query($sql);
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    $result->closeCursor();
-    $u_id = $row["userid"];
-    return $u_id;
-}
-function insertUser($db, $user_id, $name, $family) {
-    $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
-    $insert = $db->query($sql);
-    $insert->closeCursor();
-}
+////////////////////////////////////////
