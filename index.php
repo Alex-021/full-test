@@ -329,12 +329,14 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else {
+                $name_info = getInfo($db, $found, "fname");
                 $option = array(
-                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط"))
+                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
+                    array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
                 );
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-                $content = array('chat_id' => $chat_id, 'text' => "
-                کاربر found انتخاب شد.
+                $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+                کاربر $name_info انتخاب شد.
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
@@ -362,7 +364,7 @@ function getList($db, $telegram) {
     $rowsArr[] = $colsArr;
     $result->closeCursor();
     return $rowsArr;
-}/*
+}
 function getInfo($db, $user_id, $col_name) {
     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
     $result = $db->query($sql);
@@ -370,7 +372,7 @@ function getInfo($db, $user_id, $col_name) {
     $result->closeCursor();
     $data = $row[$col_name];
     return $data;
-}*/
+}
 function searchId($db, $user_id) {
     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
     $result = $db->query($sql);
@@ -389,12 +391,12 @@ function insertUser($db, $user_id, $name, $family) {
     $telegram->sendMessage($content);
 }
 function deleteUser($db, $user_id) {
-    // $name_info = getInfo($db, $user_id, "fname");
+    $name_info = getInfo($db, $user_id, "fname");
     $sql = "DELETE FROM user_data WHERE userid = $user_id";
     $delete = $db->query($sql);
     $delete->closeCursor();
     $content = array('chat_id' => $admin_id, 'text' => " 
-    کاربر: name_info از لیست حذف شد.
+    کاربر: $name_info از لیست حذف شد.
     ", 'parse_mode' => "Markdown");
     $telegram->sendMessage($content);
 }
