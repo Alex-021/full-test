@@ -313,28 +313,24 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "کاربران":
-            function getList($telegram, $db) {
-                $query = "SELECT * FROM user_data;";
-                $result = $db->query($query);
-                $i = 1;
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $t_id = $row["userid"];
-                    $t_fname = $row["fname"];
-                    $num = $row["number"];
-                    $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
-                    if ($i % 2 == 0) {
-                        $rowsArr[] = $colsArr;
-                        unset($colsArr);
-                    }
-                    $i++;
+            $query = "SELECT * FROM user_data;";
+            $result = $db->query($query);
+            $i = 1;
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $t_id = $row["userid"];
+                $t_fname = $row["fname"];
+                $num = $row["number"];
+                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
+                if ($i % 2 == 0) {
+                    $rowsArr[] = $colsArr;
+                    unset($colsArr);
                 }
-                if ($i % 2 == 0)
-                $rowsArr[] = $colsArr;
-                $result->closeCursor();
-                return $rowsArr;
+                $i++;
             }
-
-            $option = getList($telegram, $db);
+            if ($i % 2 == 0)
+            $rowsArr[] = $colsArr;
+            $option = $rowsArr;
+            $result->closeCursor();
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
             لیست کاربران: 
@@ -351,7 +347,6 @@ else { // Is ADMIN //
             break;
         
         default:
-            
             $content = array('chat_id' => $chat_id, 'text' => "
             مقدار وارد شده: $text
             ", 'parse_mode' => "Markdown");
