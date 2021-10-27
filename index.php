@@ -84,9 +84,9 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     $join_check = $join_info['ok'];
     if (!$join_check || $join_status == 'left') { // Is Not Join to Channel! //
         if ($text == '/start') {
-            // $found = searchId($db, $user_id);
+            $found = searchId($db, $user_id);
             if (!$found) {
-                // insertUser($db, $user_id, $name, $family);
+                insertUser($db, $user_id, $name, $family);
             }
             $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
@@ -324,13 +324,13 @@ else { // Is ADMIN //
             break;
         
         default:
-            // $found = searchId($db, $text);
-            // if (!$found) {
+            $found = searchId($db, $text);
+            if (!$found) {
                 $content = array('chat_id' => $chat_id, 'text' => "
                 دستور ناشناخته: $text
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
-            // }
+            }
             // else {
             //     // $name_info = getInfo($db, $found, "fname");
             //     $option = array(
@@ -347,3 +347,59 @@ else { // Is ADMIN //
             break;
     }
 }
+########////////////////######## Functions Section ########////////////////########
+function getList($db, $telegram) {
+    $query = "SELECT * FROM user_data;";
+    $result = $db->query($query);
+    $i = 1;
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $t_id = $row["userid"];
+        $t_fname = $row["fname"];
+        $num = $row["number"];
+        $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
+        if ($i % 2 == 0) {
+            $rowsArr[] = $colsArr;
+            unset($colsArr);
+        }
+        $i++;
+    }
+    if ($i % 2 == 0)
+    $rowsArr[] = $colsArr;
+    $result->closeCursor();
+    return $rowsArr;
+}
+// function getInfo($db, $user_id, $col_name) {
+//     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+//     $result = $db->query($sql);
+//     $row = $result->fetch(PDO::FETCH_ASSOC);
+//     $result->closeCursor();
+//     $data = $row[$col_name];
+//     return $data;
+// }
+function searchId($db, $user_id) {
+    $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+    $result = $db->query($sql);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    $result->closeCursor();
+    $u_id = $row["userid"];
+    return $u_id;
+}
+function insertUser($db, $user_id, $name, $family) {
+    $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
+    $insert = $db->query($sql);
+    $insert->closeCursor();
+    $content = array('chat_id' => $admin_id, 'text' => " 
+    کاربر: $name به لیست اضافه شد.
+    ", 'parse_mode' => "Markdown");
+    $telegram->sendMessage($content);
+}
+// function deleteUser($db, $user_id) {
+//     // $name_info = getInfo($db, $user_id, "fname");
+//     $sql = "DELETE FROM user_data WHERE userid = $user_id";
+//     $delete = $db->query($sql);
+//     $delete->closeCursor();
+//     $content = array('chat_id' => $admin_id, 'text' => " 
+//     کاربر: $name_info از لیست حذف شد.
+//     ", 'parse_mode' => "Markdown");
+//     $telegram->sendMessage($content);
+// }
