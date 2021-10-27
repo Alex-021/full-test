@@ -332,7 +332,7 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else {
-                $name_info = getInfo($db, $found, "fname");
+                // $name_info = getInfo($db, $found, "fname");
                 $option = array(
                     array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
                     array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
@@ -369,14 +369,14 @@ function getList($db, $telegram) {
     $result->closeCursor();
     return $rowsArr;
 }
-function getInfo($db, $user_id, $col_name) {
-    $sql = "SELECT * FROM user_data WHERE userid = $user_id";
-    $result = $db->query($sql);
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    $result->closeCursor();
-    $data = $row[$col_name];
-    return $data;
-}
+// function getInfo($db, $user_id, $col_name) {
+//     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+//     $result = $db->query($sql);
+//     $row = $result->fetch(PDO::FETCH_ASSOC);
+//     $result->closeCursor();
+//     $data = $row[$col_name];
+//     return $data;
+// }
 function searchId($db, $user_id) {
     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
     $result = $db->query($sql);
@@ -395,7 +395,7 @@ function insertUser($db, $user_id, $name, $family) {
     $telegram->sendMessage($content);
 }
 function deleteUser($db, $user_id) {
-    $name_info = getInfo($db, $user_id, "fname");
+    // $name_info = getInfo($db, $user_id, "fname");
     $sql = "DELETE FROM user_data WHERE userid = $user_id";
     $delete = $db->query($sql);
     $delete->closeCursor();
