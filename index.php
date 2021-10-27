@@ -322,7 +322,7 @@ else { // Is ADMIN //
             break;
         case "❌ حذف":
             // deleteUser($db, $text);
-            // $name_info = getInfo($db, $user_id, "fname");
+            $name_info = getInfo($db, "1011454507", "fname");
             $content = array('chat_id' => $chat_id, 'text' => " 
                 کاربر: $name_info از لیست حذف شد.
                 مقدار بازگشتی: $text
