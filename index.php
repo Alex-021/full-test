@@ -315,8 +315,6 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "من کی هستم؟":
-            $query = "SELECT * FROM user_data;";
-            $result = $db->query($query);
             $content = array('chat_id' => $chat_id, 'text' => "
             شما ادمین ربات هستید!
             ", 'parse_mode' => "Markdown");
@@ -332,14 +330,12 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else {
-                // $name_info = getInfo($db, $found, "fname");
                 $option = array(
-                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
-                    array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
+                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط"))
                 );
                 $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
                 $content = array('chat_id' => $chat_id, 'text' => "
-                کاربر $found انتخاب شد.
+                کاربر found انتخاب شد.
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
