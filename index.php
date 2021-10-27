@@ -338,8 +338,8 @@ else { // Is ADMIN //
                 //     array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
                 // );
                 // $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-                $content = array('chat_id' => $admin_id, 'text' => "
-                کاربر name_info انتخاب شد.
+                $content = array('chat_id' => $chat_id, 'text' => "
+                کاربر $found انتخاب شد.
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
