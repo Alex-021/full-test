@@ -86,7 +86,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         if ($text == '/start') {
             $found = searchId($db, $user_id);
             if (!$found) {
-                insertUser();
+                insertUser($db, $user_id, $name, $family);
             }
             $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
