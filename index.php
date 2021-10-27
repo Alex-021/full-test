@@ -321,7 +321,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "❌ حذف":
-            deleteUser($db, $user_id, $admin_id);
+            deleteUser($db, $user, $admin_id);
             break;
         default:
             $user = searchId($db, $text);
