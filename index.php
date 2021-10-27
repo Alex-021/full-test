@@ -60,7 +60,7 @@ $result->closeCursor();
 <?php
 include 'Telegram.php';
 // Set the bot TOKEN
-$bot_id = "2088394503:AAHzRy9RPDKQWLaRgr5Ytfd6-qeweTKJPTQ";
+$bot_id = "2088394503:AAGrodGdGqYOua-DoZrl_31AP6ZFSKXPHss";
 $admin_id = "271148667";
 // Instances the class
 $telegram = new Telegram($bot_id);
@@ -331,23 +331,17 @@ else { // Is ADMIN //
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
             }
-            // else {
-            //     // $name_info = getInfo($db, $found, "fname");
-            //     $option = array(
-            //         array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
-            //         array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
-            //     );
-            //     $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
-            //     $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-            //     کاربر $name_info انتخاب شد.
-    
-            //     ", 'parse_mode' => "Markdown");
-            //     $telegram->sendMessage($content);
-            // }
+            else {
+                $content = array('chat_id' => $chat_id, 'text' => "
+                کاربر: $text
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
+            }
             break;
     }
 }
-########////////////////######## Functions Section ########////////////////########
+
+//////// Functions Section ////////
 function getList($db, $telegram) {
     $query = "SELECT * FROM user_data;";
     $result = $db->query($query);
@@ -368,14 +362,6 @@ function getList($db, $telegram) {
     $result->closeCursor();
     return $rowsArr;
 }
-// function getInfo($db, $user_id, $col_name) {
-//     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
-//     $result = $db->query($sql);
-//     $row = $result->fetch(PDO::FETCH_ASSOC);
-//     $result->closeCursor();
-//     $data = $row[$col_name];
-//     return $data;
-// }
 function searchId($db, $user_id) {
     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
     $result = $db->query($sql);
@@ -388,18 +374,4 @@ function insertUser($db, $user_id, $name, $family) {
     $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
     $insert = $db->query($sql);
     $insert->closeCursor();
-    $content = array('chat_id' => $admin_id, 'text' => " 
-    کاربر: $name به لیست اضافه شد.
-    ", 'parse_mode' => "Markdown");
-    $telegram->sendMessage($content);
 }
-// function deleteUser($db, $user_id) {
-//     // $name_info = getInfo($db, $user_id, "fname");
-//     $sql = "DELETE FROM user_data WHERE userid = $user_id";
-//     $delete = $db->query($sql);
-//     $delete->closeCursor();
-//     $content = array('chat_id' => $admin_id, 'text' => " 
-//     کاربر: $name_info از لیست حذف شد.
-//     ", 'parse_mode' => "Markdown");
-//     $telegram->sendMessage($content);
-// }
