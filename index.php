@@ -320,6 +320,9 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
+        case "❌ حذف":
+            deleteUser($db, $user_id, $admin_id);
+            break;
         default:
             $user = searchId($db, $text);
             if (!$user) {
@@ -390,7 +393,7 @@ function insertUser($db, $user_id, $name, $family) {
     ", 'parse_mode' => "Markdown");
     $telegram->sendMessage($content);
 }
-function deleteUser($db, $user_id) {
+function deleteUser($db, $user_id, $admin_id) {
     $name_info = getInfo($db, $user_id, "fname");
     $sql = "DELETE FROM user_data WHERE userid = $user_id";
     $delete = $db->query($sql);
