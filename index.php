@@ -321,7 +321,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "❌ حذف":
-            deleteUser($db, $user, $admin_id);
+            deleteUser($db, $text, $admin_id);
             break;
         default:
             $user = searchId($db, $text);
@@ -395,12 +395,12 @@ function insertUser($db, $user_id, $name, $family) {
     ", 'parse_mode' => "Markdown");
     $telegram->sendMessage($content);
 }
-function deleteUser($db, $user_id, $admin_id) {
+function deleteUser($db, $user_id, $chat_id) {
     $name_info = getInfo($db, $user_id, "fname");
     $sql = "DELETE FROM user_data WHERE userid = $user_id";
     $delete = $db->query($sql);
     $delete->closeCursor();
-    $content = array('chat_id' => $admin_id, 'text' => " 
+    $content = array('chat_id' => $chat_id, 'text' => " 
     کاربر: $name_info از لیست حذف شد.
     ", 'parse_mode' => "Markdown");
     $telegram->sendMessage($content);
