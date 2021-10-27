@@ -338,7 +338,7 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else {
-                $name_info = getInfo($db, $user, "fname");
+                $name_info = getInfo($db, $text, "fname");
                 $option = array(
                     array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "$user"),
                           $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "$user")),
