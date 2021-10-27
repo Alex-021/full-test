@@ -333,11 +333,11 @@ else { // Is ADMIN //
             }
             else {
                 // $name_info = getInfo($db, $found, "fname");
-                // $option = array(
-                //     array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
-                //     array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
-                // );
-                // $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+                $option = array(
+                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
+                    array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
+                );
+                $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
                 $content = array('chat_id' => $chat_id, 'text' => "
                 کاربر $found انتخاب شد.
     
