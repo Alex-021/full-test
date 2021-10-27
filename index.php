@@ -323,7 +323,7 @@ else { // Is ADMIN //
                 $t_id = $row["userid"];
                 $t_fname = $row["fname"];
                 $num = $row["number"];
-                $colsArr = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
+                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
                 if ($i % 2 == 0) {
                     $rowsArr = $colsArr;
                     unset($colsArr);
