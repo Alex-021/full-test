@@ -325,13 +325,13 @@ else { // Is ADMIN //
                 $num = $row["number"];
                 $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
                 if ($i % 2 == 0) {
-                    $rowsArr = $colsArr;
+                    $rowsArr[] = $colsArr;
                     unset($colsArr);
                 }
                 $i++;
             }
             if ($i % 2 == 0)
-            $rowsArr = $colsArr;
+            $rowsArr[] = $colsArr;
             $result->closeCursor();
             $option = $rowsArr;
             $keyb = $telegram->buildInlineKeyBoard($option);
