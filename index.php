@@ -322,9 +322,9 @@ else { // Is ADMIN //
             break;
         case "❌ حذف":
             // deleteUser($db, $text);
-            $name_info = getInfo($db, 1011454507, "fname");
+            // $name_info = getInfo($db, 1011454507, "fname");
             $content = array('chat_id' => $chat_id, 'text' => " 
-                کاربر: $name_info از لیست حذف شد.
+                کاربر: name_info از لیست حذف شد.
                 مقدار بازگشتی: $text
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
