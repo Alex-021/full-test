@@ -313,8 +313,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "کاربران":
-            function getList() {
-                global $telegram, $db;
+            function getList($telegram) {
                 $query = "SELECT * FROM user_data;";
                 $result = $db->query($query);
                 $i = 1;
@@ -335,7 +334,7 @@ else { // Is ADMIN //
                 return $rowsArr;
             }
 
-            $option = getList();
+            $option = getList($telegram);
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
             لیست کاربران: 
