@@ -334,10 +334,12 @@ else { // Is ADMIN //
             else {
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
-                    array($telegram->buildKeyboardButton("ارسال پیام"),$telegram->buildKeyboardButton("قطع ارتباط")),
-                    array($telegram->buildKeyboardButton("✏️ ویرایش"),$telegram->buildKeyboardButton("❌ حذف"))
-                );
-                $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+                    array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = $user),
+                          $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = $user)),
+                    array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", $callback_data = $user),
+                          $telegram->buildInlineKeyBoardButton("❌ حذف", "", $callback_data = $user))
+                        );
+                    $keyb = $telegram->buildInlineKeyBoard($option);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
                 کاربر $name_info انتخاب شد.
     
