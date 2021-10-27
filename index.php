@@ -319,7 +319,8 @@ else { // Is ADMIN //
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $t_id = $row["userid"];
                 $t_fname = $row["fname"];
-                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$i: $t_fname","", "$t_id");
+                $num = $row["number"];
+                $colsArr[] = $telegram->buildInlineKeyBoardButton("کاربر #$num: $t_fname","", "$t_id");
                 if ($i % 2 == 0) {
                     $rowsArr[] = $colsArr;
                     unset($colsArr);
