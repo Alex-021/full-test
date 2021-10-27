@@ -321,7 +321,15 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         default:
+        $content = array('chat_id' => $chat_id, 'text' => "
+                دستور ناشناخته: $found
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
             $found = searchId($db, $text);
+            $content = array('chat_id' => $chat_id, 'text' => "
+                دستور ناشناخته: $found
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
             if (!$found) {
                 $content = array('chat_id' => $chat_id, 'text' => "
                 دستور ناشناخته: $text
