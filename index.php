@@ -314,7 +314,6 @@ else { // Is ADMIN //
             break;
         case "کاربران":
             function getList() {
-                global $telegram;
                 $query = "SELECT * FROM user_data;";
                 $result = $db->query($query);
                 $i = 1;
@@ -334,6 +333,7 @@ else { // Is ADMIN //
                 $result->closeCursor();
                 return $rowsArr;
             }
+
             $option = getList();
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
