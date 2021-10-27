@@ -320,7 +320,6 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
-        
         default:
             $found = searchId($db, $text);
             if (!$found) {
