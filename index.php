@@ -84,9 +84,9 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     $join_check = $join_info['ok'];
     if (!$join_check || $join_status == 'left') { // Is Not Join to Channel! //
         if ($text == '/start') {
-            // $found = searchId($db, $user_id);
+            $found = searchId($db, $user_id);
             if (!$found) {
-                // insertUser($db, $user_id, $name, $family);
+                insertUser($db, $user_id, $name, $family);
             }
             $post = array('chat_id' => $admin_id, 'from_chat_id' => $chat_id, 'message_id' => $message_id);
             $telegram->forwardMessage($post); // TRUE FORWARD Message with Quote.
@@ -377,23 +377,23 @@ function getList($db, $telegram) {
 //     $data = $row[$col_name];
 //     return $data;
 // }
-// function searchId($db, $user_id) {
-//     $sql = "SELECT * FROM user_data WHERE userid = $user_id";
-//     $result = $db->query($sql);
-//     $row = $result->fetch(PDO::FETCH_ASSOC);
-//     $result->closeCursor();
-//     $u_id = $row["userid"];
-//     return $u_id;
-// }
-// function insertUser($db, $user_id, $name, $family) {
-//     $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
-//     $insert = $db->query($sql);
-//     $insert->closeCursor();
-//     $content = array('chat_id' => $admin_id, 'text' => " 
-//     کاربر: $name به لیست اضافه شد.
-//     ", 'parse_mode' => "Markdown");
-//     $telegram->sendMessage($content);
-// }
+function searchId($db, $user_id) {
+    $sql = "SELECT * FROM user_data WHERE userid = $user_id";
+    $result = $db->query($sql);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    $result->closeCursor();
+    $u_id = $row["userid"];
+    return $u_id;
+}
+function insertUser($db, $user_id, $name, $family) {
+    $sql = "INSERT INTO user_data (userid, fname, lname) VALUES ($user_id, '$name', '$family')";
+    $insert = $db->query($sql);
+    $insert->closeCursor();
+    $content = array('chat_id' => $admin_id, 'text' => " 
+    کاربر: $name به لیست اضافه شد.
+    ", 'parse_mode' => "Markdown");
+    $telegram->sendMessage($content);
+}
 // function deleteUser($db, $user_id) {
 //     // $name_info = getInfo($db, $user_id, "fname");
 //     $sql = "DELETE FROM user_data WHERE userid = $user_id";
