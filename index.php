@@ -292,7 +292,6 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
 else { // Is ADMIN //
     switch ($text) {
         case "/start":
-            main_menu:
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
             );
@@ -323,7 +322,6 @@ else { // Is ADMIN //
             break;
         case "❌ حذف":
             deleteUser($db, $user, $admin_id);
-            goto main_menu;
             break;
         default:
             $user = searchId($db, $text);
