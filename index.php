@@ -314,6 +314,7 @@ else { // Is ADMIN //
             break;
         case "کاربران":
             function getList() {
+                global $telegram;
                 $query = "SELECT * FROM user_data;";
                 $result = $db->query($query);
                 $i = 1;
