@@ -307,7 +307,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "کاربران":
-            $option = getList($telegram, $db);
+            $option = getList($db, $telegram);
             $keyb = $telegram->buildInlineKeyBoard($option);
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => '
             لیست کاربران: 
@@ -324,17 +324,25 @@ else { // Is ADMIN //
             break;
         
         default:
-            
-            $content = array('chat_id' => $chat_id, 'text' => "
-            مقدار وارد شده: $text
-            ", 'parse_mode' => "Markdown");
-            $telegram->sendMessage($content);
+            $found = searchId($db, $text);
+            if (!$found) {
+                $content = array('chat_id' => $chat_id, 'text' => "
+                دستور ناشناخته: $text
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
+            }
+            else {
+                $content = array('chat_id' => $chat_id, 'text' => "
+                کاربر: $text
+                ", 'parse_mode' => "Markdown");
+                $telegram->sendMessage($content);
+            }
             break;
     }
 }
 
 //////// Functions Section ////////
-function getList($telegram, $db) {
+function getList($db, $telegram) {
     $query = "SELECT * FROM user_data;";
     $result = $db->query($query);
     $i = 1;
