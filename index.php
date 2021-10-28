@@ -77,7 +77,10 @@ $from_chat = $telegram->FromChatID();
 
 // if (!is_null($text) && !is_null($chat_id)) {
 if ($user_id != $admin_id) { // Is Not ADMIN //
-
+    $found = searchId($db, $user_id);
+    if (!$found) {
+        insertUser($db, $user_id, $name, $family);
+    }
     $join_channel = array('chat_id' => '@Rmn98', 'user_id' => $user_id);
     $join_info = $telegram->getChatMember($join_channel);
     $join_status = $join_info['result']['status']; // Value => member || left
