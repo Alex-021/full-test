@@ -321,13 +321,10 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "gmail":
-            // deleteUser($db, $text);
-            // $name_info = getInfo($db, 1011454507, "fname");
-            $content = array('chat_id' => $chat_id, 'text' => " 
-                کاربر: name_info از لیست حذف شد.
-                مقدار بازگشتی: 
-                ", 'parse_mode' => "Markdown");
-                $telegram->sendMessage($content);
+            $content = array('chat_id' => $chat_id, 'text' => "
+            شما ادمین ربات هستید!
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
             break;
         default:
             // $user = searchId($db, $text);
