@@ -354,6 +354,8 @@ else { // Is ADMIN //
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
+                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+                $telegram->deleteMessage($del_msg);
             }
             break;
     }
