@@ -340,8 +340,8 @@ else { // Is ADMIN //
             else {
                 $name_info = getInfo($db, $text, "fname");
                 $option = array(
-                    array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
-                    array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
+                    array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", "telegram")),
+                    array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", "instagram")),
                         );
                     $keyb = $telegram->buildInlineKeyBoard($option);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
