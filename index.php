@@ -329,6 +329,7 @@ else { // Is ADMIN //
             // $name_info = getInfo($db, 1011454507, "fname");
             break;
         default:
+            static $user;
             $user = searchId($db, $text);
             if (!$user) {
                 $content = array('chat_id' => $chat_id, 'text' => "
