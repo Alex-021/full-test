@@ -290,7 +290,8 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     }
 }
 else { // Is ADMIN //
-    switch ($text) {
+    list($cbq, $value) = explode("|", $text);
+    switch ($cbq) {
         case "/start":
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
@@ -322,14 +323,15 @@ else { // Is ADMIN //
             break;
         case "حذف":
             $content = array('chat_id' => $chat_id, 'text' => "
-            مقدار برگشتی: $user
+            مقدار برگشتی: $text
+            مقدار کال بک: $cbq
+            مقدار متغیر: $value
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             // deleteUser($db, $text);
             // $name_info = getInfo($db, 1011454507, "fname");
             break;
         default:
-            static $user;
             $user = searchId($db, $text);
             if (!$user) {
                 $content = array('chat_id' => $chat_id, 'text' => "
@@ -338,12 +340,12 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
-                $name_info = getInfo($db, $text, "fname");
+                $name_info = getInfo($db, $$user, "fname");
                 $option = array(
                     array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "$user"),
                           $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "$user")),
                     array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", $callback_data = "$user"),
-                          $telegram->buildInlineKeyBoardButton("حذف", "", $callback_data = "حذف"))
+                          $telegram->buildInlineKeyBoardButton("حذف", "", $callback_data = "حذف|$user"))
                         );
                     $keyb = $telegram->buildInlineKeyBoard($option);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
