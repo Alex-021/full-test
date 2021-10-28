@@ -319,6 +319,45 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
+        case "edit":
+            deleteMessage($telegram, $chat_id, $message_id);
+            $name_info = getInfo($db, $id, "fname");
+            $option = array(
+                array($telegram->buildKeyboardButton("تغییر نام"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            کاربر: $name_info
+            درحال ویرایش...
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+            break;
+        case "تغییر نام":
+            // deleteMessage($telegram, $chat_id, $message_id);
+            // $name_info = getInfo($db, $id, "fname");
+            // deleteUser($db, $id);
+            $option = array(
+                array($telegram->buildKeyboardButton("ذخیره"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            لطفا نام جدید را وارد کنید:
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+            break;
+        case "ذخیره":
+            // deleteMessage($telegram, $chat_id, $message_id);
+            // $name_info = getInfo($db, $id, "fname");
+            // deleteUser($db, $id);
+            $option = array(
+                array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
+            );
+            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
+            نام جدید ذخیره شد.
+            ", 'parse_mode' => "Markdown");
+            $telegram->sendMessage($content);
+            break;
         case "delete":
             deleteMessage($telegram, $chat_id, $message_id);
             $name_info = getInfo($db, $id, "fname");
