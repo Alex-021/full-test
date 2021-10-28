@@ -328,6 +328,7 @@ else { // Is ADMIN //
             از لیست حذف شد.
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
+            goto menu;
             break;
         default:
             $user = searchId($db, $text);
@@ -338,6 +339,7 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
+                menu:
                 deleteMessage($telegram, $chat_id, $message_id);
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
