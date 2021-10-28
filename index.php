@@ -323,7 +323,9 @@ else { // Is ADMIN //
             break;
         case "حذف":
             $content = array('chat_id' => $chat_id, 'text' => "
-            مقدار برگشتی: $user
+            مقدار برگشتی: $text
+            مقدار کال بک: $cbq
+            مقدار دوم: $value
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             // deleteUser($db, $text);
