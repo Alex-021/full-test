@@ -341,6 +341,8 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
+                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+                $telegram->deleteMessage($del_msg);
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
                     array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "send|$user"),
@@ -354,8 +356,6 @@ else { // Is ADMIN //
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
-                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-                $telegram->deleteMessage($del_msg);
             }
             break;
     }
