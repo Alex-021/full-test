@@ -290,8 +290,8 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     }
 }
 else { // Is ADMIN //
-    list($callback_text, $callback_id) = explode("|", $text);
-    switch ($callback_text) {
+    list($text, $id) = explode("|", $text);
+    switch ($text) {
         case "/start":
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
@@ -321,13 +321,13 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
-        case "حذف":
-            // deleteUser($db, $text);
-            // $name_info = getInfo($db, $id, "fname");
+        case "delete":
+            // deleteUser($db, $id);
+            $name_info = getInfo($db, $id, "fname");
             $content = array('chat_id' => $chat_id, 'text' => "
-            مقدار برگشتی: $text
-            مقدار کال بک: $callback_text
-            مقدار دوم: $callback_id
+            نام: $name_info
+            مقدار متن: $text
+            مقدار آیدی: $id
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
@@ -342,10 +342,10 @@ else { // Is ADMIN //
             else { // Is User //
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
-                    array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "$user"),
-                          $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "$user")),
-                    array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", $callback_data = "$user"),
-                          $telegram->buildInlineKeyBoardButton("حذف", "", $callback_data = "حذف|$user"))
+                    array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "send|$user"),
+                          $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "dis|$user")),
+                    array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", $callback_data = "edit|$user"),
+                          $telegram->buildInlineKeyBoardButton("حذف", "", $callback_data = "delete|$user"))
                         );
                     $keyb = $telegram->buildInlineKeyBoard($option);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
