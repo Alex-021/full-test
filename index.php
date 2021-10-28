@@ -291,10 +291,7 @@ else { // Is ADMIN //
     list($text, $id) = explode("|", $text);
     switch ($text) {
         case "/start":
-            $option = array(
-                array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
-            );
-            $keyb = $telegram->buildKeyBoard($option, $onetime=true, $resize=true, $selective=true);
+            $keyb = keyMenu();
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             *خوش امدید*
             
@@ -323,7 +320,8 @@ else { // Is ADMIN //
             deleteMessage($telegram, $chat_id, $message_id);
             $name_info = getInfo($db, $id, "fname");
             // deleteUser($db, $id);
-            $content = array('chat_id' => $chat_id, 'text' => "
+            $keyb = keyMenu();
+            $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             کاربر: $name_info
             از لیست حذف شد.
             ", 'parse_mode' => "Markdown");
@@ -411,3 +409,10 @@ function deleteMessage($telegram, $chat_id, $message_id) {
     $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
     $telegram->deleteMessage($del_msg);
     }
+function keyMenu($telegram) {
+    $option = $option = array(
+        array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true, $selective=true);
+    return $keyb;
+}
