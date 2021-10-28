@@ -322,12 +322,13 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "delete":
-            // deleteUser($db, $id);
+            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+            $telegram->deleteMessage($del_msg);
             $name_info = getInfo($db, $id, "fname");
+            // deleteUser($db, $id);
             $content = array('chat_id' => $chat_id, 'text' => "
-            نام: $name_info
-            مقدار متن: $text
-            مقدار آیدی: $id
+            کاربر: $name_info
+            از لیست حذف شد.
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
