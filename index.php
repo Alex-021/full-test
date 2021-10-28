@@ -102,8 +102,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
             ", 'parse_mode' => "Markdown");
         $telegram->sendMessage($content);
         }
-        $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-        $telegram->deleteMessage($del_msg);
+        deleteMessage($telegram, $chat_id, $message_id);
         $option = array(
             array(
                 $telegram->buildInlineKeyBoardButton(" عضویت در کانال ", $url="https://t.me/joinchat/UNWSodg8AsF4fA1U")
@@ -134,8 +133,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
         switch ($text) {
             case $t_start:
             case $confirm:
-                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-                $telegram->deleteMessage($del_msg);
+                deleteMessage($telegram, $chat_id, $message_id);
                 $option = array(array($telegram->buildKeyboardButton($t_buy)),
                     array($telegram->buildKeyboardButton($t_info),$telegram->buildKeyboardButton($t_desc)),
                     array($telegram->buildKeyboardButton($t_contact)));
@@ -322,8 +320,7 @@ else { // Is ADMIN //
             $telegram->sendMessage($content);
             break;
         case "delete":
-            $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-            $telegram->deleteMessage($del_msg);
+            deleteMessage($telegram, $chat_id, $message_id);
             $name_info = getInfo($db, $id, "fname");
             // deleteUser($db, $id);
             $content = array('chat_id' => $chat_id, 'text' => "
@@ -341,8 +338,7 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
-                $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
-                $telegram->deleteMessage($del_msg);
+                deleteMessage($telegram, $chat_id, $message_id);
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
                     array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "send|$user"),
@@ -411,3 +407,7 @@ function deleteUser($db, $user_id) {
     $delete = $db->query($sql);
     $delete->closeCursor();
 }
+function deleteMessage($telegram, $chat_id, $message_id) {
+    $del_msg = array('chat_id' => $chat_id, 'message_id' => $message_id);
+    $telegram->deleteMessage($del_msg);
+    }
