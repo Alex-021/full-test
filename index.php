@@ -290,8 +290,7 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     }
 }
 else { // Is ADMIN //
-    list($cbq, $value) = explode("|", $text);
-    switch ($cbq) {
+    switch ($text) {
         case "/start":
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
@@ -323,9 +322,7 @@ else { // Is ADMIN //
             break;
         case "حذف":
             $content = array('chat_id' => $chat_id, 'text' => "
-            مقدار برگشتی: $text
-            مقدار کال بک: $cbq
-            مقدار متغیر: $value
+            مقدار برگشتی: $user
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             // deleteUser($db, $text);
@@ -340,7 +337,7 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
-                $name_info = getInfo($db, $$user, "fname");
+                $name_info = getInfo($db, $user, "fname");
                 $option = array(
                     array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "$user"),
                           $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "$user")),
