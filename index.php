@@ -320,39 +320,39 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
-        case "hazf":
-        case "حذف":
+        case "gmail":
             // deleteUser($db, $text);
             // $name_info = getInfo($db, 1011454507, "fname");
             $content = array('chat_id' => $chat_id, 'text' => " 
                 کاربر: name_info از لیست حذف شد.
-                مقدار بازگشتی: $text
+                مقدار بازگشتی: 
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
             break;
         default:
-            $user = searchId($db, $text);
-            if (!$user) {
-                $content = array('chat_id' => $chat_id, 'text' => "
-                دستور ناشناخته: $text
-                ", 'parse_mode' => "Markdown");
-                $telegram->sendMessage($content);
-            }
-            else {
-                $name_info = getInfo($db, $text, "fname");
+            // $user = searchId($db, $text);
+            // if (!$user) {
+            //     $content = array('chat_id' => $chat_id, 'text' => "
+            //     دستور ناشناخته: $text
+            //     ", 'parse_mode' => "Markdown");
+            //     $telegram->sendMessage($content);
+            // }
+            // else {
+                // $name_info = getInfo($db, $text, "fname");
                 $option = array(
-                    array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", "hazf"),
-                          $telegram->buildInlineKeyBoardButton("قطع ارتباط", "","حذف")),
-                    array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", "حذف"),
-                          $telegram->buildInlineKeyBoardButton("حذف", "", "حذف"))
-                        );
-                    $keyb = $telegram->buildInlineKeyBoard($option);
+                    array($telegram->buildInlineKeyBoardButton("جیمیل | Gmail", "", $callback_data = "gmail"), 
+                          $telegram->buildInlineKeyBoardButton("شیائومی | Xiaomi", "", $callback_data = "xiaomi")),
+                    array($telegram->buildInlineKeyBoardButton("مایکروسافت و سایر برنامه‌ها", "", $callback_data = "others")),
+                );
+                $keyb = $telegram->buildInlineKeyBoard($option);
+    
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
-                کاربر $name_info انتخاب شد.
+                
+                شماره مجازی برای چه برنامه‌ای لازم دارید؟
     
                 ", 'parse_mode' => "Markdown");
                 $telegram->sendMessage($content);
-            }
+            // }
             break;
     }
 }
