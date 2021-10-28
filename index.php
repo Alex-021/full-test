@@ -319,7 +319,7 @@ else { // Is ADMIN //
         case "delete":
             deleteMessage($telegram, $chat_id, $message_id);
             $name_info = getInfo($db, $id, "fname");
-            // deleteUser($db, $id);
+            deleteUser($db, $id);
             $keyb = keyMenu();
             $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
             کاربر: $name_info
