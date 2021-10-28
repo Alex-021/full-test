@@ -322,16 +322,11 @@ else { // Is ADMIN //
             break;
         case "حذف":
             $content = array('chat_id' => $chat_id, 'text' => "
-            شما ادمین ربات هستید!
+            شما ادمین ربات هستید!: $text
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             // deleteUser($db, $text);
             // $name_info = getInfo($db, 1011454507, "fname");
-            // $content = array('chat_id' => $chat_id, 'text' => " 
-            //     کاربر: name_info از لیست حذف شد.
-            //     مقدار بازگشتی: 
-            //     ", 'parse_mode' => "Markdown");
-            //     $telegram->sendMessage($content);
             break;
         default:
             $user = searchId($db, $text);
