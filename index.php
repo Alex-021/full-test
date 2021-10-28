@@ -320,7 +320,7 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             break;
-        case "حذف":
+        case "telegram":
             // deleteUser($db, $text);
             // $name_info = getInfo($db, 1011454507, "fname");
             $content = array('chat_id' => $chat_id, 'text' => " 
@@ -340,10 +340,8 @@ else { // Is ADMIN //
             else {
                 $name_info = getInfo($db, $text, "fname");
                 $option = array(
-                    array($telegram->buildInlineKeyBoardButton("ارسال پیام", "", $callback_data = "$user"),
-                          $telegram->buildInlineKeyBoardButton("قطع ارتباط", "", $callback_data = "$user")),
-                    array($telegram->buildInlineKeyBoardButton("✏️ ویرایش", "", $callback_data = "$user"),
-                          $telegram->buildInlineKeyBoardButton("حذف", "", $callback_data = "حذف"))
+                    array($telegram->buildInlineKeyBoardButton("Telegram | تلگرام", "", $callback_data = "telegram")),
+                    array($telegram->buildInlineKeyBoardButton("اینستاگرام | Instagram", "", $callback_data = "instagram")),
                         );
                     $keyb = $telegram->buildInlineKeyBoard($option);
                 $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "
