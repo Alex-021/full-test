@@ -290,7 +290,8 @@ if ($user_id != $admin_id) { // Is Not ADMIN //
     }
 }
 else { // Is ADMIN //
-    switch ($text) {
+    list($cbq, $value) = explode("|", $text);
+    switch ($cbq) {
         case "/start":
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
