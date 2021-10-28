@@ -322,7 +322,7 @@ else { // Is ADMIN //
         case "delete":
             deleteMessage($telegram, $chat_id, $message_id);
             $name_info = getInfo($db, $id, "fname");
-            // deleteUser($db, $id);
+            deleteUser($db, $id);
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
             );
