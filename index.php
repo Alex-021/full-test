@@ -291,6 +291,7 @@ else { // Is ADMIN //
     list($text, $id) = explode("|", $text);
     switch ($text) {
         case "/start":
+            menu:
             $option = array(
                 array($telegram->buildKeyboardButton("من کی هستم؟"),$telegram->buildKeyboardButton("کاربران"))
             );
@@ -329,7 +330,7 @@ else { // Is ADMIN //
             ", 'parse_mode' => "Markdown");
             $telegram->sendMessage($content);
             goto menu;
-            break;
+            // break;
         default:
             $user = searchId($db, $text);
             if (!$user) {
@@ -339,7 +340,6 @@ else { // Is ADMIN //
                 $telegram->sendMessage($content);
             }
             else { // Is User //
-                menu:
                 deleteMessage($telegram, $chat_id, $message_id);
                 $name_info = getInfo($db, $user, "fname");
                 $option = array(
